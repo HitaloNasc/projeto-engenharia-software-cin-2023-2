@@ -1,14 +1,18 @@
 import React from "react";
 import { ContainerList } from "./styles";
 import Card from "../Card/Card";
+
 const CardList = () => {
-    const dataCard = require('./[listar]get-products.json');
-    const renderList = dataCard.map(card => {
-        return <Card name={card.name} price={card.price} image={card.images[0].image}/>
-    }); 
-    return(
-        <ContainerList> 
-            {renderList}
+
+    const productList = require('./[listar]get-products.json');
+
+    const cardElements = productList.map(({ name, price, images }) => {
+        return <Card key={name} name={name} price={price} image={images[0].image} />;
+    });
+
+    return (
+        <ContainerList>
+            {cardElements}
         </ContainerList>
     );
 }

@@ -1,15 +1,17 @@
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import * as React from 'react';
-import CardList from './components/CardList/CardList';
+import Dashboard from './pages/Dashboard';
+import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <CardList/>
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  </Router>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 reportWebVitals();
