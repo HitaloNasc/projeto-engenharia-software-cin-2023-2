@@ -1,6 +1,6 @@
 import React from "react";
 import { ContainerList } from "./styles";
-import Card from "../Card/Card";
+import Card from "../Card";
 
 const CardList = () => {
 

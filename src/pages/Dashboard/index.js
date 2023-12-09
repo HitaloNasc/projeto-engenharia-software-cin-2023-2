@@ -1,4 +1,4 @@
-import CardList from "../../components/CardList/CardList";
+import CardList from "../../components/CardList";
 
 export default function Dashboard() {
     return (
