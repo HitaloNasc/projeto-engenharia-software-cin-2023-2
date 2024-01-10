@@ -22,7 +22,7 @@ const Card = (props) => {
         @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&display=swap');
       </style>
       {/* <StyledImage src={props.image} /> */}
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', marginRight: 8 }}>
         <StyledImage src={props.image} />
         <div style={{ marginLeft: 0, padding: 0 }}> {/* Coloca o botão no lado direito */}
           <OptionsButton onEdit={handleEdit} onDelete={handleDelete} />
