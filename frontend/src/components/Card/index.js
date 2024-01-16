@@ -11,7 +11,8 @@ const Card = ({ product }) => {
 
   const formattedPrice = Number(price).toFixed(2);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (event) => {
+    event.stopPropagation();
     console.log("Adicionado ao carrinho!");
   };
 
@@ -23,8 +24,10 @@ const Card = ({ product }) => {
     console.log("Excluir item:", name);
   };
 
-  const handleCardClick = () => {
-    setIsModalOpen(true);
+  const handleCardClick = (event) => {
+    if (!event.target.closest("button")) {
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
