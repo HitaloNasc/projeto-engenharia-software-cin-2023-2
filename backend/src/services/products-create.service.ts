@@ -12,9 +12,6 @@ export class CreateProductsService implements Service {
 
     async execute(data: Products) {
         const id = uuidv4();
-        console.log(id);
-        console.log(typeof id);
-
         return await this.repository.create({ id, ...data });
     }
 }
