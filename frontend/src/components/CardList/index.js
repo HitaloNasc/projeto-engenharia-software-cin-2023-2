@@ -6,8 +6,8 @@ const CardList = () => {
 
     const productList = require('./[listar]get-products.json');
 
-    const cardElements = productList.map(({ name, price, images }) => {
-        return <Card key={name} name={name} price={price} image={images[0].image} />;
+    const cardElements = productList.map((product) => {
+        return <Card product={product} />;
     });
 
     return (
