@@ -1,3 +1,3 @@
 export interface Service {
-    execute(): Promise<any[]>
+    execute(args?: any): Promise<any[]>;
 }

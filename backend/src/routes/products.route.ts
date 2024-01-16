@@ -1,18 +1,27 @@
 import Router, { Request, Response } from 'express';
-import { ListProductsController } from '../controllers';
-import { ListProductsService } from '../services';
 import { ProductsRepository } from '../repositories';
+import { ListProductsService, CreateProductsService } from '../services';
+import { ListProductsController, CreateProductsController } from '../controllers';
 
 const router = Router();
 const path = '/products';
 
 const repository = new ProductsRepository();
-const service = new ListProductsService(repository);
-const controller = new ListProductsController(service);
 
 // Lista de produtos
+const listService = new ListProductsService(repository);
+const listController = new ListProductsController(listService);
+//
 router.get('/', async (req: Request, res: Response) => {
-    return await controller.execute(req, res);
+    return await listController.execute(req, res);
+});
+
+// Cria um novo produto
+const createService = new CreateProductsService(repository);
+const createController = new CreateProductsController(createService);
+//
+router.post('/', async (req: Request, res: Response) => {
+    return await createController.execute(req, res);
 });
 
 export { router, path };

@@ -1,11 +1,19 @@
+import { ProductsModel, Products } from '../models';
+import { Logger } from '../helpers';
+
 export class ProductsRepository {
-    async list(): Promise<any[]> {
-        return await new Promise(resolve => {
-            resolve([
-                { id: 1, name: 'Product 1', price: 100 },
-                { id: 2, name: 'Product 2', price: 200 },
-                { id: 3, name: 'Product 3', price: 300 },
-            ]);
-        });
+    async create(data: Products): Promise<Products> {
+        return await ProductsModel.create(data)
+            .then((data: Products) => {
+                return data;
+            })
+            .catch((error: Error) => {
+                Logger.dir(error);
+                throw error;
+            });
+    }
+
+    async list(): Promise<Products[]> {
+        return await ProductsModel.find();
     }
 }

@@ -2,6 +2,8 @@ import express from 'express';
 // import { bodyParser, contentType, notFoundHandler, handlerError } from '../middleware';
 import cors from 'cors';
 import routes from '../routes';
+import { connect } from './database';
+import { env } from './env';
 
 const app = express();
 
@@ -9,6 +11,7 @@ const app = express();
 // app.use(contentType);
 app.use(express.json());
 app.use(cors());
+connect({ urlConnection: env.DATABASE_URL });
 routes(app);
 // app.use(notFoundHandler);
 // app.use(handlerError);
