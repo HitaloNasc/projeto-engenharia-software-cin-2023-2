@@ -17,7 +17,7 @@ export class ProductsRepository {
         return await ProductsModel.find();
     }
 
-    async delete(id: String): Promise<any> {
+    async delete(id: string): Promise<any> {
         console.log(id);
         return ProductsModel.deleteOne({id})
             .then(result => result)
@@ -25,5 +25,20 @@ export class ProductsRepository {
                 Logger.dir(error);
                 throw error;
             });
+    }
+
+    async update(id: string, data: Partial<Products>): Promise<Products | null> {
+        try {
+            const updatedProduct = await ProductsModel.findOneAndUpdate(
+                { id },
+                { $set: data },
+                { new: true } // Retorna o documento atualizado
+            );
+
+            return updatedProduct;
+        } catch (error) {
+            Logger.dir(error);
+            throw error;
+        }
     }
 }

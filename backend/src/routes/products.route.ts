@@ -1,7 +1,7 @@
 import Router, { Request, Response } from 'express';
 import { ProductsRepository } from '../repositories';
-import { ListProductsService, CreateProductsService, DeleteProductsService } from '../services';
-import { ListProductsController, CreateProductsController, DeleteProductsController} from '../controllers';
+import { ListProductsService, CreateProductsService, DeleteProductsService, UpdateProductsService } from '../services';
+import { ListProductsController, CreateProductsController, DeleteProductsController, UpdateProductsController} from '../controllers';
 
 const router = Router();
 const path = '/products';
@@ -31,5 +31,14 @@ const deleteController = new DeleteProductsController(deleteService);
 router.delete('/:id', async (req: Request, res: Response) => {
     return await deleteController.execute(req, res)
 });
+
+// Atualiza um produto
+const updateService = new UpdateProductsService(repository);
+const updateController = new UpdateProductsController(updateService);
+//
+
+router.put('/:id', async (req: Request, res: Response) => {
+    return await updateController.execute(req, res);
+})
 
 export { router, path };
