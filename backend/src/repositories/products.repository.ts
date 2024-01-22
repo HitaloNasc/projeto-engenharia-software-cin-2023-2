@@ -16,4 +16,14 @@ export class ProductsRepository {
     async list(): Promise<Products[]> {
         return await ProductsModel.find();
     }
+
+    async delete(id: String): Promise<any> {
+        console.log(id);
+        return ProductsModel.deleteOne({id})
+            .then(result => result)
+            .catch(error => {
+                Logger.dir(error);
+                throw error;
+            });
+    }
 }
