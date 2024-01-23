@@ -8,7 +8,7 @@ export class DeleteProductsService implements Service {
         this.repository = respository;
     }
     
-    async execute(id: String) {        
+    async execute(id: string) {        
         return await this.repository.delete(id);
     }
 }
