@@ -3,7 +3,6 @@ import { Logger } from '../helpers';
 import { Service } from '../services';
 
 export class UpdateProductsController {
-
     private service: Service;
 
     constructor(service: Service) {
@@ -12,7 +11,7 @@ export class UpdateProductsController {
 
     public async execute(req: Request, res: Response): Promise<any> {
         try {
-            Logger.log('api - products-update');
+            Logger.log('api - products - update');
 
             const id = req.params.id;
             const dataToUpdate = req.body;
@@ -25,5 +24,4 @@ export class UpdateProductsController {
             return res.status(500).json({ error: 'Erro interno no servidor.' });
         }
     }
-
 }
