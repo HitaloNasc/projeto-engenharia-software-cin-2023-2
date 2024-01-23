@@ -1,8 +1,7 @@
 import { Repository } from '../repositories/repository';
 import { Service } from './service';
-import { Products } from '../models';
 
-export class UpdateProductsService implements Service {
+export class SetAvailableProductsService implements Service {
     private repository: Repository;
     private getById: Service;
 
@@ -11,22 +10,32 @@ export class UpdateProductsService implements Service {
         this.getById = getById;
     }
 
-    private async format(id: string, data: Products) {
+    private async validate(id: string) {
+        const product = await this.getById.execute(id);
+
+        if (product.availability) {
+            throw new Error('Product already available');
+        }
+    }
+
+    private async format(id: string) {
         const product = await this.getById.execute(id);
 
         return {
             id: id,
-            name: data.name || product.name,
-            price: data.price || product.price,
-            description: data.description || product.description,
-            availability: product.availability,
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            availability: true,
             createdAt: product.createdAt,
             updatedAt: new Date().toISOString(),
         };
     }
 
-    async execute(id: string, data: Products) {
-        const update = await this.format(id, data);
+    async execute(id: string) {
+        const update = await this.format(id);
+
+        await this.validate(id);
 
         await this.repository.update(id, update);
 

@@ -1,4 +1,4 @@
-import { ListProductsService } from '.';
+import { GetByIdProductsService } from './products-get-by-id.service';
 import { InMemoryProductsRepository } from '../repositories';
 
 const mockProducts = [
@@ -26,33 +26,30 @@ describe('ListProductsService', () => {
     it('deve retornar produtos formatados corretamente', async () => {
         // Arrange
         const mockRepository = new InMemoryProductsRepository(mockProducts);
-        const listProductsService = new ListProductsService(mockRepository);
+        const listProductsService = new GetByIdProductsService(mockRepository);
 
         // Act
-        const result = await listProductsService.execute();
+        const product = await listProductsService.execute('1');
 
         // Assert
-        expect(result).toEqual(mockProducts);
-        result.forEach(product => {
-            expect(product).toHaveProperty('id');
-            expect(product).toHaveProperty('name');
-            expect(product).toHaveProperty('price');
-            expect(product).toHaveProperty('description');
-            expect(product).toHaveProperty('availability');
-            expect(product).toHaveProperty('createdAt');
-            expect(product).toHaveProperty('updatedAt');
-        });
+        expect(product).toEqual(mockProducts[0]);
+        expect(product).toHaveProperty('id');
+        expect(product).toHaveProperty('name');
+        expect(product).toHaveProperty('price');
+        expect(product).toHaveProperty('description');
+        expect(product).toHaveProperty('availability');
+        expect(product).toHaveProperty('createdAt');
+        expect(product).toHaveProperty('updatedAt');
     });
 
     it('deve retornar uma lista vazia se o repositorio retornar uma lista vazia', async () => {
-        // Arrange
         const mockRepository = new InMemoryProductsRepository([]);
-        const listProductsService = new ListProductsService(mockRepository);
+        const listProductsService = new GetByIdProductsService(mockRepository);
 
-        // Act
-        const result = await listProductsService.execute();
-
-        // Assert
-        expect(result).toEqual([]);
+        try {
+            await listProductsService.execute('1');
+        } catch (error) {
+            expect(error).toEqual(new Error('Product not found'));
+        }
     });
 });

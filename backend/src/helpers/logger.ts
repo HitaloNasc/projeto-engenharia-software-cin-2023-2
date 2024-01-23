@@ -10,7 +10,7 @@ export const Logger = {
         console.log('[' + COLORS.blue + 'LOG' + COLORS.reset + '] ' + message);
     },
 
-    dir: (message: object) => {
+    dir: (message: any) => {
         console.dir(message);
     },
 

@@ -17,6 +17,10 @@ export class ListProductsService implements Service {
                 id: product.id,
                 name: product.name,
                 price: product.price,
+                description: product.description,
+                availability: product.availability,
+                createdAt: product.createdAt,
+                updatedAt: product.updatedAt,
             };
         });
     }

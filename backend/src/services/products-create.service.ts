@@ -10,8 +10,23 @@ export class CreateProductsService implements Service {
         this.repository = respository;
     }
 
+    private format(id: string, data: Products) {
+        return {
+            id: id,
+            name: data.name,
+            price: data.price,
+            description: data.description,
+            availability: true,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        };
+    }
+
     async execute(data: Products) {
         const id = uuidv4();
-        return await this.repository.create({ id, ...data });
+
+        const create = this.format(id, data);
+
+        return await this.repository.create(create);
     }
 }
