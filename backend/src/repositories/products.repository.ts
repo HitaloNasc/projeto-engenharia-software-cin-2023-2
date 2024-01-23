@@ -22,7 +22,6 @@ export class ProductsRepository {
     }
 
     async delete(id: string): Promise<any> {
-        console.log(id);
         return ProductsModel.deleteOne({ id })
             .then(result => result)
             .catch(error => {
