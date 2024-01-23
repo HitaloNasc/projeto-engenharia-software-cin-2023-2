@@ -8,10 +8,33 @@ export const ModalContentWrapper = styled.div`
   padding: 0;
   width: 500px;
   margin-bottom: 20px;
+`;
 
-  img {
-    width: 100%;
-    height: auto;
+export const CarouselWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+`;
+
+export const CarouselImage = styled.img`
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+`;
+
+export const NavButton = styled.button`
+  display: ${(props) => (props.disabled ? "none" : "flex")};
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: ${(props) => (props.disabled ? "#ff0000" : "#fff")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  outline: none;
+
+  &:hover {
+    color: ${(props) => (props.disabled ? "#ff0000" : "#aaa")};
   }
 `;
 
@@ -32,4 +55,12 @@ export const ProductPrice = styled.p`
 
 export const StockInfo = styled.p`
   color: #888;
+`;
+
+export const LeftNavButton = styled(NavButton)`
+  left: 10px;
+`;
+
+export const RightNavButton = styled(NavButton)`
+  right: 10px;
 `;

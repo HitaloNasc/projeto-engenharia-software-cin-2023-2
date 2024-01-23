@@ -68,7 +68,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
           fullWidth
           margin="normal"
         />
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" accept="image/*" multiple onChange={handleFileChange} />
       </form>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
         <Button onClick={onClose} color="primary">
