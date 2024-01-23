@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { CardContainer, StyledImage, StyledPrice, StyledName, StyledContent } from "./styles";
+import { CardContainer, StyledImage, StyledDescription, StyledPrice, StyledName, StyledContent } from "./styles";
 import AddToCartButton from "../AddToCartButton";
 import OptionsButton from "../AddOptionsButton";
 import ProductModal from "../ProductModal";
 
 const Card = ({ product }) => {
-  const { name, price } = product;
+  const { name, price, description } = product;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const images = product.images[0].image;
 
@@ -40,17 +40,21 @@ const Card = ({ product }) => {
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&display=swap');
         </style>
-        <div style={{ display: 'flex', marginRight: 8 }}>
-          <StyledImage src={images} />
-          <div style={{ marginLeft: 0, padding: 0 }}>
-            <OptionsButton onEdit={handleEdit} onDelete={handleDelete} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', height: '100%', width: '100%' }}>
+          <div style={{ marginRight: 8 }}>
+            <StyledImage src={images} />
           </div>
+          <StyledContent>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 25 }}>
+              <OptionsButton onEdit={handleEdit} onDelete={handleDelete} />
+            </div>
+            <div>
+              <StyledName>{name}</StyledName>
+              <StyledDescription>{description}</StyledDescription>
+              <StyledPrice>R$ {formattedPrice}</StyledPrice>
+            </div>
+          </StyledContent>
         </div>
-        <StyledContent>
-          <StyledName>{name}</StyledName>
-          <StyledPrice>R$ {formattedPrice}</StyledPrice>
-          <AddToCartButton onClick={handleAddToCart} />
-        </StyledContent>
       </CardContainer>
 
       {isModalOpen && (
