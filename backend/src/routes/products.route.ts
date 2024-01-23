@@ -1,7 +1,23 @@
 import Router, { Request, Response } from 'express';
 import { ProductsRepository } from '../repositories';
-import { ListProductsService, CreateProductsService, DeleteProductsService, UpdateProductsService, GetByIdProductsService } from '../services';
-import { ListProductsController, CreateProductsController, DeleteProductsController, UpdateProductsController } from '../controllers';
+import {
+    ListProductsService,
+    CreateProductsService,
+    DeleteProductsService,
+    UpdateProductsService,
+    GetByIdProductsService,
+    SetAvailableProductsService,
+    SetUnavailableProductsService,
+} from '../services';
+import {
+    ListProductsController,
+    CreateProductsController,
+    DeleteProductsController,
+    UpdateProductsController,
+    SetAvailableProductsController,
+    SetUnavailableProductsController,
+    GetByIdProductsController,
+} from '../controllers';
 
 const router = Router();
 const path = '/products';
@@ -14,6 +30,14 @@ const listController = new ListProductsController(listService);
 //
 router.get('/', async (req: Request, res: Response) => {
     return await listController.execute(req, res);
+});
+
+// Retorna um produto pelo id
+const getByIdService = new GetByIdProductsService(repository);
+const getByIdController = new GetByIdProductsController(getByIdService);
+//
+router.get('/:id', async (req: Request, res: Response) => {
+    return await getByIdController.execute(req, res);
 });
 
 // Cria um novo produto
@@ -33,13 +57,27 @@ router.delete('/:id', async (req: Request, res: Response) => {
 });
 
 // Atualiza um produto
-const getByIdProductsService = new GetByIdProductsService(repository);
-const updateService = new UpdateProductsService(repository, getByIdProductsService);
+const updateService = new UpdateProductsService(repository, getByIdService);
 const updateController = new UpdateProductsController(updateService);
 //
-
 router.put('/:id', async (req: Request, res: Response) => {
     return await updateController.execute(req, res);
+});
+
+// Torna um produto disponível
+const setAvailableService = new SetAvailableProductsService(repository, getByIdService);
+const setAvailableController = new SetAvailableProductsController(setAvailableService);
+//
+router.put('/:id/available', async (req: Request, res: Response) => {
+    return await setAvailableController.execute(req, res);
+});
+
+// Torna um produto indisponível
+const setUnavailableService = new SetUnavailableProductsService(repository, getByIdService);
+const setUnavailableController = new SetUnavailableProductsController(setUnavailableService);
+//
+router.put('/:id/unavailable', async (req: Request, res: Response) => {
+    return await setUnavailableController.execute(req, res);
 });
 
 export { router, path };

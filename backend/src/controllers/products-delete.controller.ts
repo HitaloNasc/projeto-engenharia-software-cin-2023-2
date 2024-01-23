@@ -1,15 +1,11 @@
 import { Request, Response } from 'express';
 import { Logger } from '../helpers';
 import { Service } from '../services';
-import { Products } from '../models';
-import {ListProductsService} from '../services';
 
-
-export class DeleteProductsController{
-    
+export class DeleteProductsController {
     private service: Service;
 
-    constructor(service: Service){
+    constructor(service: Service) {
         this.service = service;
     }
 
@@ -18,16 +14,14 @@ export class DeleteProductsController{
     //         throw new Error('Name and price are required');
     //     }
     // }
-   
-    public async execute(req: Request, res: Response): Promise<any> {
 
-        Logger.log('api - products-delete');
+    public async execute(req: Request, res: Response): Promise<any> {
+        Logger.log('api - products - delete');
 
         const id = req.params.id;
-            
+
         const result = await this.service.execute(id);
 
         return res.status(200).json(result);
     }
- 
 }

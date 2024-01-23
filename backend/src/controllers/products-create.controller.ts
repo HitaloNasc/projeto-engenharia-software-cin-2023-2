@@ -17,30 +17,14 @@ export class CreateProductsController {
     }
 
     public async execute(req: Request, res: Response): Promise<Response> {
-        Logger.log('api - products-create');
+        Logger.log('api - products - create');
 
         const data = req.body;
 
-        if (Array.isArray(data)) {
-            
-            const results = await Promise.all(
-                data.map(async (data: Products) => {
-                    
-                    this.validate(data);
-                    
-                    return this.service.execute(data);
-                })
-            )
+        this.validate(data);
 
-            return res.status(200).json(results);
-            
-        } else{
+        const result = await this.service.execute(data);
 
-            this.validate(data);
-            
-            const result = await this.service.execute(data);
-
-            return res.status(200).json(result);
-        }
+        return res.status(200).json(result);
     }
 }
