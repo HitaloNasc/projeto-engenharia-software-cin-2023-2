@@ -17,13 +17,31 @@ export class ProductsRepository {
         return await ProductsModel.find();
     }
 
-    async delete(id: String): Promise<any> {
-        console.log(id);
-        return ProductsModel.deleteOne({id})
+    async findOne(id: string): Promise<Products | null> {
+        return await ProductsModel.findOne({ id });
+    }
+
+    async delete(id: string): Promise<any> {
+        return ProductsModel.deleteOne({ id })
             .then(result => result)
             .catch(error => {
                 Logger.dir(error);
                 throw error;
             });
+    }
+
+    async update(id: string, data: Products): Promise<Products | null> {
+        try {
+            const updatedProduct = await ProductsModel.findOneAndUpdate(
+                { id },
+                { $set: data },
+                { new: true }, // Retorna o documento atualizado
+            );
+
+            return updatedProduct;
+        } catch (error) {
+            Logger.dir(error);
+            throw error;
+        }
     }
 }
