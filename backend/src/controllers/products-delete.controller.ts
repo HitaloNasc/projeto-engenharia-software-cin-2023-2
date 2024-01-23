@@ -16,7 +16,7 @@ export class DeleteProductsController {
     // }
 
     public async execute(req: Request, res: Response): Promise<any> {
-        Logger.log('api - products-delete');
+        Logger.log('api - products - delete');
 
         const id = req.params.id;
 

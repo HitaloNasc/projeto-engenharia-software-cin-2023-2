@@ -10,7 +10,7 @@ export class ListProductsController {
     }
 
     public async execute(req: Request, res: Response): Promise<Response> {
-        Logger.log('api - products-list');
+        Logger.log('api - products - list');
 
         const result = await this.service.execute();
 

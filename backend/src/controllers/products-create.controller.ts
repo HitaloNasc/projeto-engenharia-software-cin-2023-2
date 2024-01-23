@@ -17,7 +17,7 @@ export class CreateProductsController {
     }
 
     public async execute(req: Request, res: Response): Promise<Response> {
-        Logger.log('api - products-create');
+        Logger.log('api - products - create');
 
         const data = req.body;
 

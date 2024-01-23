@@ -16,9 +16,8 @@ export class ListProductsService implements Service {
             return {
                 id: product.id,
                 name: product.name,
-                price: product.price
+                price: product.price,
             };
         });
     }
 }
-
