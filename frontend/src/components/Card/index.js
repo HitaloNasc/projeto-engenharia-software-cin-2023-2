@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import { CardContainer, StyledImage, StyledDescription, StyledPrice, StyledName, StyledContent } from "./styles";
 import OptionsButton from "../OptionsButton";
 import ProductModal from "../ProductModal";
+import AddProductModal from "../AddProductModal";
 
 const Card = ({ product }) => {
   const { name, price, description } = product;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const images = product.images[0].image;
+  const [isEditClicked, setIsEditClicked] = useState(false);
+  const images = product.images && product.images[0].image;
 
   const formattedPrice = Number(price).toFixed(2);
 
   const handleEdit = () => {
+    setIsEditClicked(true);
     console.log("Editar item:", name);
   };
 
@@ -26,6 +29,7 @@ const Card = ({ product }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsEditClicked(false);
   };
 
   return (
@@ -51,10 +55,19 @@ const Card = ({ product }) => {
         </div>
       </CardContainer>
 
-      {isModalOpen && (
+      {isModalOpen && !isEditClicked && (
         <ProductModal
           isOpen={isModalOpen}
           onClose={closeModal}
+          product={product}
+        />
+      )}
+
+      {isEditClicked && (
+        <AddProductModal
+          isOpen={isEditClicked}
+          isEditing
+          onClose={() => setIsEditClicked(false)}
           product={product}
         />
       )}
