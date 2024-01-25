@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { CardContainer, StyledImage, StyledDescription, StyledPrice, StyledName, StyledContent } from "./styles";
-import AddToCartButton from "../AddToCartButton";
-import OptionsButton from "../AddOptionsButton";
+import OptionsButton from "../OptionsButton";
 import ProductModal from "../ProductModal";
 
 const Card = ({ product }) => {
@@ -10,11 +9,6 @@ const Card = ({ product }) => {
   const images = product.images[0].image;
 
   const formattedPrice = Number(price).toFixed(2);
-
-  const handleAddToCart = (event) => {
-    event.stopPropagation();
-    console.log("Adicionado ao carrinho!");
-  };
 
   const handleEdit = () => {
     console.log("Editar item:", name);

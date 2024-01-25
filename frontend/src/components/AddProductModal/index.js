@@ -5,10 +5,10 @@ import Modal from "../../components/Modal";
 
 const AddProductModal = ({ isOpen, onClose }) => {
   const [productInfo, setProductInfo] = useState({
-    productName: "",
-    productDescription: "",
+    name: "",
+    description: "",
     price: "",
-    stockQuantity: "",
+    stock: "",
     file: null,
   });
 
@@ -38,16 +38,16 @@ const AddProductModal = ({ isOpen, onClose }) => {
       <form>
         <TextField
           label="Nome do Produto"
-          name="productName"
-          value={productInfo.productName}
+          name="name"
+          value={productInfo.name}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
         />
         <TextField
           label="Descrição do Produto"
-          name="productDescription"
-          value={productInfo.productDescription}
+          name="description"
+          value={productInfo.description}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
@@ -62,8 +62,8 @@ const AddProductModal = ({ isOpen, onClose }) => {
         />
         <TextField
           label="Quantidade em Estoque"
-          name="stockQuantity"
-          value={productInfo.stockQuantity}
+          name="stock"
+          value={productInfo.stock}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
