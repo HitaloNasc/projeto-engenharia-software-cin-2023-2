@@ -3,33 +3,45 @@ import { CardContainer, StyledImage, StyledDescription, StyledPrice, StyledName,
 import OptionsButton from "../OptionsButton";
 import ProductModal from "../ProductModal";
 import AddProductModal from "../AddProductModal";
+import ConfirmationModal from "../ConfirmationModal";
 
 const Card = ({ product }) => {
   const { name, price, description } = product;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditClicked, setIsEditClicked] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const images = product.images && product.images[0].image;
 
   const formattedPrice = Number(price).toFixed(2);
 
   const handleEdit = () => {
-    setIsEditClicked(true);
+    setIsEditModalOpen(true);
+    setIsModalOpen(false);
     console.log("Editar item:", name);
   };
 
   const handleDelete = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
     console.log("Excluir item:", name);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteModalOpen(false);
   };
 
   const handleCardClick = (event) => {
-    if (!event.target.closest("button")) {
+    if (!event.target.closest("button") && !setIsEditModalOpen) {
       setIsModalOpen(true);
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setIsEditClicked(false);
+    setIsEditModalOpen(false);
   };
 
   return (
@@ -55,20 +67,31 @@ const Card = ({ product }) => {
         </div>
       </CardContainer>
 
-      {isModalOpen && !isEditClicked && (
+      {isModalOpen && (
         <ProductModal
           isOpen={isModalOpen}
           onClose={closeModal}
           product={product}
+          onEdit={handleEdit}
         />
       )}
 
-      {isEditClicked && (
+      {isEditModalOpen && (
         <AddProductModal
-          isOpen={isEditClicked}
+          isOpen={isEditModalOpen}
           isEditing
-          onClose={() => setIsEditClicked(false)}
+          onClose={() => setIsEditModalOpen(false)}
           product={product}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <ConfirmationModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+          productName={name}
         />
       )}
     </>

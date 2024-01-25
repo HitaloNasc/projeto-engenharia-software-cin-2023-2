@@ -37,7 +37,7 @@ const AddProductModal = ({ isOpen, onClose, isEditing, product }) => {
 
   const handleSubmit = () => {
     if (isEditing) {
-      editProduct(productInfo).then((data) => {
+      editProduct(product.id, productInfo).then((data) => {
         console.log(data);
       });
     } else {

@@ -6,7 +6,7 @@ import { getProducts } from "./fetch";
 const CardList = () => {
     const [products, setProducts] = useState([]);
 
-    const productList = require('./[listar]get-products-back.json');
+    const productList = require('./[listar]get-products.json');
 
     // useEffect(() => {
     //     getProducts().then((data) => {

@@ -9,9 +9,18 @@ export const addProduct = async (productBody) => {
   }
 };
 
-export const editProduct = async (productBody) => {
+export const editProduct = async (productID, productBody) => {
   try {
-    const { data } = await api.put(`/products`, productBody);
+    const { data } = await api.put(`/products/${productID}`, productBody);
+    return data;
+  } catch (e) {
+    return null;
+  }
+};
+
+export const deleteProduct = async (productID) => {
+  try {
+    const { data } = await api.put(`/products/${productID}`);
     return data;
   } catch (e) {
     return null;
