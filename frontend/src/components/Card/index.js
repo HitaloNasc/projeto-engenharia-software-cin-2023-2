@@ -4,6 +4,7 @@ import OptionsButton from "../OptionsButton";
 import ProductModal from "../ProductModal";
 import AddProductModal from "../AddProductModal";
 import ConfirmationModal from "../ConfirmationModal";
+import { deleteProduct } from "./fetch";
 
 const Card = ({ product }) => {
   const { name, price, description } = product;
@@ -17,7 +18,6 @@ const Card = ({ product }) => {
   const handleEdit = () => {
     setIsEditModalOpen(true);
     setIsModalOpen(false);
-    console.log("Editar item:", name);
   };
 
   const handleDelete = () => {
@@ -25,7 +25,7 @@ const Card = ({ product }) => {
   };
 
   const handleConfirmDelete = () => {
-    console.log("Excluir item:", name);
+    deleteProduct(product.id);
     setIsDeleteModalOpen(false);
   };
 

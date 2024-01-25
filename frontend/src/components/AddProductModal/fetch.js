@@ -17,12 +17,3 @@ export const editProduct = async (productID, productBody) => {
     return null;
   }
 };
-
-export const deleteProduct = async (productID) => {
-  try {
-    const { data } = await api.put(`/products/${productID}`);
-    return data;
-  } catch (e) {
-    return null;
-  }
-};
