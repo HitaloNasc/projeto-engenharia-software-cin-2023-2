@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardContainer, StyledImage, StyledDescription, StyledPrice, StyledName, StyledContent } from "./styles";
 import OptionsButton from "../OptionsButton";
 import ProductModal from "../ProductModal";
@@ -34,7 +34,7 @@ const Card = ({ product }) => {
   };
 
   const handleCardClick = (event) => {
-    if (!event.target.closest("button") && !setIsEditModalOpen) {
+    if (!event.target.closest(".options-button") && !isEditModalOpen) {
       setIsModalOpen(true);
     }
   };
@@ -43,6 +43,12 @@ const Card = ({ product }) => {
     setIsModalOpen(false);
     setIsEditModalOpen(false);
   };
+
+  useEffect(() => {
+    if (isEditModalOpen || isDeleteModalOpen) {
+      setIsModalOpen(false);
+    }
+  }, [isEditModalOpen, isDeleteModalOpen])
 
   return (
     <>
@@ -55,7 +61,7 @@ const Card = ({ product }) => {
             <StyledImage src={images} />
           </div>
           <StyledContent>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 25 }}>
+            <div className="options-button" style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 25 }}>
               <OptionsButton onEdit={handleEdit} onDelete={handleDelete} />
             </div>
             <div>
