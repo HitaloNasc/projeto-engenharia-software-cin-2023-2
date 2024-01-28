@@ -17,4 +17,8 @@ export const Logger = {
     initial: (message: string) => {
         console.log(COLORS.blue + message + COLORS.reset);
     },
+
+    error: (message: string) => {
+        console.error('[' + COLORS.red + 'ERROR' + COLORS.reset + '] ' + message);
+    },
 };
