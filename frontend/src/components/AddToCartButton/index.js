@@ -3,24 +3,22 @@ import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const AddToCartButton = ({ onClick }) => {
-  const [quantidade, setQuantidade] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
-  const incrementarQuantidade = () => {
-    setQuantidade(quantidade + 1);
+  const incrementQuantity = () => {
+    setQuantity(quantity + 1);
   };
 
-  const decrementarQuantidade = () => {
-    if (quantidade > 0) {
-      setQuantidade(quantidade - 1);
+  const decrementQuantity = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
     }
   };
 
-  const handleAdicionarAoCarrinho = () => {
-    
+  const handleAddToCart = () => {
     if (onClick) {
-      onClick(quantidade); 
+      onClick(quantity);
     }
-    
   };
 
   return (
@@ -29,15 +27,15 @@ const AddToCartButton = ({ onClick }) => {
         <Button
           variant="outlined"
           size="small"
-          onClick={decrementarQuantidade}
+          onClick={decrementQuantity}
         >
           -
         </Button>
-        <div style={{ margin: "0 5px" }}>{quantidade}</div>
+        <div style={{ margin: "0 5px" }}>{quantity}</div>
         <Button
           variant="outlined"
           size="small"
-          onClick={incrementarQuantidade}
+          onClick={incrementQuantity}
         >
           +
         </Button>
@@ -47,12 +45,11 @@ const AddToCartButton = ({ onClick }) => {
         size="small"
         color="primary"
         startIcon={<ShoppingCartIcon />}
-        onClick={handleAdicionarAoCarrinho}
+        onClick={handleAddToCart}
         style={{ backgroundColor: "#6929F0", marginRight: "5px" }}
       >
-        Adicionar ao Carrinho
+        Adicionar
       </Button>
-      
     </div>
   );
 };
