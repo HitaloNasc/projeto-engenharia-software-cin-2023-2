@@ -1,13 +1,18 @@
-import React, { useEffect,useState } from "react";
+import React, { useState } from "react";
 import { ContainerList } from "./styles";
 import Card from "../Card";
 import { getProducts } from "./fetch";
+import { BiSearch } from 'react-icons/bi';
 
 const CardList = () => {
     const [products, setProducts] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
 
     const productList = require('./[listar]get-products.json');
 
+    const filteredProducts = productList.filter(product =>
+        product.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
     // useEffect(() => {
     //     getProducts().then((data) => {
     //         console.log(data)
@@ -15,13 +20,28 @@ const CardList = () => {
     //     })
     // }, []);
 
-    const cardElements = productList.map((product) => {
-        return <Card product={product} />;
-    });
+    const handleSearchInput = (e) => {
+        setSearchInput(e.target.value);
+    };
 
     return (
         <ContainerList>
-            {cardElements}
+            <div className="search">
+                <input
+                    type="text"
+                    placeholder="Buscar produto..."
+                    value={searchInput}
+                    onChange={handleSearchInput}
+                />
+                <button>
+                    <BiSearch />
+                </button>
+            </div>
+            <div className="cards">
+                {filteredProducts.map((product, index) => (
+                    <Card key={index} product={product} />
+                ))}
+            </div>
         </ContainerList>
     );
 }
