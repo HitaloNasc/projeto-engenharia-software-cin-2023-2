@@ -97,3 +97,12 @@ export const CheckoutButton = styled.button`
   font-size: 16px;
 `;
 
+export const AddMoreItemsButton = styled.button`
+  color: #b22eeb;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+`;

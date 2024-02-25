@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as S from "./styles";
-import { FaTrashAlt, FaPlus } from 'react-icons/fa';
+import { FaTrashAlt, FaPlus } from "react-icons/fa";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -30,7 +31,10 @@ const Cart = () => {
     };
 
     const calculateTotalPrice = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        return cartItems.reduce(
+            (total, item) => total + item.price * item.quantity,
+            0
+        );
     };
 
     return (
@@ -40,6 +44,9 @@ const Cart = () => {
                 <S.EmptyCartMessage>O carrinho está vazio</S.EmptyCartMessage>
             ) : (
                 <>
+                    <Link to="/dashboard">
+                        <S.AddMoreItemsButton>Adicionar mais itens</S.AddMoreItemsButton>
+                    </Link>
                     <S.CartList>
                         {cartItems.map((item) => (
                             <S.CartItem key={item.id}>
@@ -47,28 +54,40 @@ const Cart = () => {
                                     <S.ItemImage src={item.images[0].image} alt={item.name} />
                                     <S.ItemDetails>
                                         <S.ItemName>{item.name}</S.ItemName>
-                                        <S.ProductDescription>{item.description}</S.ProductDescription>
-                                        <S.ItemPrice>R$ {(item.price * item.quantity).toFixed(2)}</S.ItemPrice>
+                                        <S.ProductDescription>
+                                            {item.description}
+                                        </S.ProductDescription>
+                                        <S.ItemPrice>
+                                            R$ {(item.price * item.quantity).toFixed(2)}
+                                        </S.ItemPrice>
                                     </S.ItemDetails>
                                 </S.LeftContent>
                                 <S.RightContent>
-                                    <S.RemoveButton onClick={() => removeItemFromCart(item.id)}>
+                                    <S.RemoveButton
+                                        onClick={() => removeItemFromCart(item.id)}
+                                    >
                                         <FaTrashAlt />
                                     </S.RemoveButton>
                                     <S.QuantityInput
                                         type="number"
                                         min={1}
                                         value={item.quantity}
-                                        onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                                        onChange={(e) =>
+                                            updateQuantity(item.id, parseInt(e.target.value))
+                                        }
                                     />
-                                    <S.AddButton onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                                    <S.AddButton
+                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                    >
                                         <FaPlus />
                                     </S.AddButton>
                                 </S.RightContent>
                             </S.CartItem>
                         ))}
                     </S.CartList>
-                    <S.TotalPrice>Total: R$ {calculateTotalPrice().toFixed(2)}</S.TotalPrice>
+                    <S.TotalPrice>
+                        Total: R$ {calculateTotalPrice().toFixed(2)}
+                    </S.TotalPrice>
                     <S.CheckoutButton>Finalizar Reserva</S.CheckoutButton>
                 </>
             )}
