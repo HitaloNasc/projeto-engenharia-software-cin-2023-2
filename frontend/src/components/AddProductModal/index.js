@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Modal from "../../components/Modal";
+import { addProduct, editProduct } from "./fetch";
 
-const AddProductModal = ({ isOpen, onClose }) => {
+const AddProductModal = ({ isOpen, onClose, isEditing, product }) => {
   const [productInfo, setProductInfo] = useState({
-    productName: "",
-    productDescription: "",
+    name: "",
+    description: "",
     price: "",
-    stockQuantity: "",
+    stock: "",
     file: null,
   });
+
+  useEffect(() => {
+    if (isEditing && product) {
+      setProductInfo(product);
+    }
+  }, [isEditing, product]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,25 +36,33 @@ const AddProductModal = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = () => {
-    console.log("Product Info:", productInfo);
+    if (isEditing) {
+      editProduct(product.id, productInfo).then((data) => {
+        console.log(data);
+      });
+    } else {
+      addProduct(productInfo).then((data) => {
+        console.log(data);
+      });
+    }
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Adicionar Produto">
+    <Modal isOpen={isOpen} onClose={onClose} title={isEditing ? "Editar Produto" : "Adicionar Produto"}>
       <form>
         <TextField
           label="Nome do Produto"
-          name="productName"
-          value={productInfo.productName}
+          name="name"
+          value={productInfo.name || ""}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
         />
         <TextField
           label="Descrição do Produto"
-          name="productDescription"
-          value={productInfo.productDescription}
+          name="description"
+          value={productInfo.description || ""}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
@@ -55,15 +70,15 @@ const AddProductModal = ({ isOpen, onClose }) => {
         <TextField
           label="Preço"
           name="price"
-          value={productInfo.price}
+          value={productInfo.price || ""}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
         />
         <TextField
           label="Quantidade em Estoque"
-          name="stockQuantity"
-          value={productInfo.stockQuantity}
+          name="stock"
+          value={productInfo.stock || ""}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
@@ -75,7 +90,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
           Cancelar
         </Button>
         <Button onClick={handleSubmit} color="primary">
-          Adicionar
+          {isEditing ? "Salvar" : "Adicionar"}
         </Button>
       </div>
     </Modal>

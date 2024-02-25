@@ -6,8 +6,12 @@ export const ModalContentWrapper = styled.div`
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 500px;
+  width: 100%;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 export const CarouselWrapper = styled.div`

@@ -1,38 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardContainer, StyledImage, StyledDescription, StyledPrice, StyledName, StyledContent } from "./styles";
-import AddToCartButton from "../AddToCartButton";
-import OptionsButton from "../AddOptionsButton";
+import OptionsButton from "../OptionsButton";
 import ProductModal from "../ProductModal";
+import AddProductModal from "../AddProductModal";
+import ConfirmationModal from "../ConfirmationModal";
+import { deleteProduct } from "./fetch";
 
 const Card = ({ product }) => {
   const { name, price, description } = product;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const images = product.images[0].image;
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const images = product.images && product.images[0].image;
 
   const formattedPrice = Number(price).toFixed(2);
 
-  const handleAddToCart = (event) => {
-    event.stopPropagation();
-    console.log("Adicionado ao carrinho!");
-  };
-
   const handleEdit = () => {
-    console.log("Editar item:", name);
+    setIsEditModalOpen(true);
+    setIsModalOpen(false);
   };
 
   const handleDelete = () => {
-    console.log("Excluir item:", name);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    deleteProduct(product.id);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteModalOpen(false);
   };
 
   const handleCardClick = (event) => {
-    if (!event.target.closest("button")) {
+    if (!event.target.closest(".options-button") && !isEditModalOpen) {
       setIsModalOpen(true);
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsEditModalOpen(false);
   };
+
+  useEffect(() => {
+    if (isEditModalOpen || isDeleteModalOpen) {
+      setIsModalOpen(false);
+    }
+  }, [isEditModalOpen, isDeleteModalOpen])
 
   return (
     <>
@@ -45,7 +61,7 @@ const Card = ({ product }) => {
             <StyledImage src={images} />
           </div>
           <StyledContent>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 25 }}>
+            <div className="options-button" style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 25 }}>
               <OptionsButton onEdit={handleEdit} onDelete={handleDelete} />
             </div>
             <div>
@@ -62,6 +78,26 @@ const Card = ({ product }) => {
           isOpen={isModalOpen}
           onClose={closeModal}
           product={product}
+          onEdit={handleEdit}
+        />
+      )}
+
+      {isEditModalOpen && (
+        <AddProductModal
+          isOpen={isEditModalOpen}
+          isEditing
+          onClose={() => setIsEditModalOpen(false)}
+          product={product}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <ConfirmationModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+          productName={name}
         />
       )}
     </>

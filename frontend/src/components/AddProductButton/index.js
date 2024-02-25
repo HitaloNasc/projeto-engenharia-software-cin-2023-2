@@ -21,7 +21,7 @@ const AddProductButton = () => {
         size="small"
         color="primary"
         onClick={openModal}
-        style={{ backgroundColor: "#296AF0", marginTop: "10px" }}
+        style={{ backgroundColor: "#fff8c5", marginTop: "10px", color: "#000" }}
       >
         Adicionar Produto
       </Button>

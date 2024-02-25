@@ -23,22 +23,22 @@ const ProductModal = ({ isOpen, onClose, product }) => {
   const { name, price, description, stock, images } = product;
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images?.length);
   };
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images?.length) % images?.length);
   };
 
   const isAtFirstImage = currentImageIndex === 0;
-  const isAtLastImage = currentImageIndex === images.length - 1;
+  const isAtLastImage = currentImageIndex === images?.length - 1;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} padding={"0"}>
       <ModalContentWrapper>
         <CarouselWrapper>
           <LeftNavButton onClick={handlePrevImage} disabled={isAtFirstImage}>&lt;</LeftNavButton>
-          <CarouselImage src={images[currentImageIndex].image} alt={name} />
+          <CarouselImage src={images && images[currentImageIndex].image} alt={name} />
           <RightNavButton onClick={handleNextImage} disabled={isAtLastImage}>&gt;</RightNavButton>
         </CarouselWrapper>
         <ProductName>{name}</ProductName>
