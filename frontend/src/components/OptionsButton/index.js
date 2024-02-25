@@ -19,7 +19,7 @@ const OptionsButton = ({ onEdit, onDelete }) => {
         aria-controls="options-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        style={{ padding: '0px', marginRight: '2px' }}
+        style={{ padding: '0px', marginRight: '2px', color: '#bd2d4e' }}
         
       >
         <MoreVertIcon />
