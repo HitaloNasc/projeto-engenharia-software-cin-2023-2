@@ -14,6 +14,19 @@ export const ModalContentWrapper = styled.div`
   }
 `;
 
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+`;
+
 export const CarouselWrapper = styled.div`
   position: relative;
   overflow: hidden;

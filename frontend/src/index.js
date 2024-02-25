@@ -5,6 +5,7 @@ import * as React from 'react';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Cart from './pages/Cart';
 import './index.css';
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   </Router>
 );
