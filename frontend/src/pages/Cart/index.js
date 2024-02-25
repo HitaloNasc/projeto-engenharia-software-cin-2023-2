@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./styles";
-import { FaTrashAlt, FaPlus } from "react-icons/fa";
+import { FaTrashAlt, FaPlus, FaMinus } from "react-icons/fa";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -63,11 +63,19 @@ const Cart = () => {
                                     </S.ItemDetails>
                                 </S.LeftContent>
                                 <S.RightContent>
-                                    <S.RemoveButton
-                                        onClick={() => removeItemFromCart(item.id)}
-                                    >
-                                        <FaTrashAlt />
-                                    </S.RemoveButton>
+                                    {item.quantity === 1 ? (
+                                        <S.RemoveButton
+                                            onClick={() => removeItemFromCart(item.id)}
+                                        >
+                                            <FaTrashAlt />
+                                        </S.RemoveButton>
+                                    ) : (
+                                        <S.RemoveButton
+                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                        >
+                                            <FaMinus />
+                                        </S.RemoveButton>
+                                    )}
                                     <S.QuantityInput
                                         type="number"
                                         min={1}

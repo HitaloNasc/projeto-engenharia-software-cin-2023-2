@@ -25,7 +25,7 @@ export const ContainerList = styled.div`
     }
 
     > div.search button {
-        background-color: #6c5ce7;
+        background-color: #bd2d4e;
         border: none;
         border-radius: 20px;
         outline: none;
@@ -39,7 +39,7 @@ export const ContainerList = styled.div`
     }
 
     > div.search button:hover {
-        background-color: #8e44ad;
+        background-color: red;
     }
 
     > div.search button svg {

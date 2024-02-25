@@ -33,7 +33,7 @@ export default function Login({ loginType }) {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#bd2d4e' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -66,6 +66,7 @@ export default function Login({ loginType }) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              style={{ backgroundColor: "#bd2d4e", color: "#fff" }}
             >
               {loginType === "signin" ? "Login" : "Criar"}
             </Button>

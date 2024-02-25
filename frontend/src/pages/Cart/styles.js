@@ -60,6 +60,7 @@ export const ProductDescription = styled.p`
 `;
 
 export const ItemPrice = styled.span`
+  font-weight: bold;
   margin-bottom: 10px;
 `;
 
@@ -72,6 +73,7 @@ export const RemoveButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: #bd2d4e;
   margin-left: 10px;
 `;
 
@@ -89,7 +91,7 @@ export const CheckoutButton = styled.button`
   width: 100%;
   padding: 10px;
   margin-top: 20px;
-  background-color: #1abc9c;
+  background-color: #bd2d4e;
   color: white;
   border: none;
   border-radius: 5px;
@@ -98,7 +100,7 @@ export const CheckoutButton = styled.button`
 `;
 
 export const AddMoreItemsButton = styled.button`
-  color: #b22eeb;
+  color: #bd2d4e;
   border: none;
   padding: 10px 20px;
   font-size: 16px;

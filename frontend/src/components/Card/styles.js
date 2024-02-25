@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-    background-color: #f5f4f6;
+    background-color: #f5f5f5;
     width: 500px;
     height: 180px;
     border-radius: 10px;
@@ -34,7 +34,7 @@ export const StyledDescription = styled.h1`
     white-space: nowrap;                  
     text-overflow: ellipsis;
     margin: 2px;
-    color: #9B8C00;
+    color: #bd2d4e;
     font-family: 'Nunito Sans', sans-serif;
 `
 

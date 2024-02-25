@@ -10,7 +10,7 @@ const AddToCartButton = ({ onClick }) => {
       color="primary"
       startIcon={<ShoppingCartIcon />}
       onClick={onClick}
-      style={{ backgroundColor: '#6929F0', marginTop: '10px' }}
+      style={{ backgroundColor: '#bd2d4e', marginTop: '10px' }}
     >
       Adicionar ao Carrinho
     </Button>

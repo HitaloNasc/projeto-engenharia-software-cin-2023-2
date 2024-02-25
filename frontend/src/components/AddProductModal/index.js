@@ -86,10 +86,10 @@ const AddProductModal = ({ isOpen, onClose, isEditing, product }) => {
         <input type="file" accept="image/*" multiple onChange={handleFileChange} />
       </form>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} style={{ color: '#bd2d4e' }}>
           Cancelar
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button onClick={handleSubmit} style={{ backgroundColor: '#bd2d4e', color: '#fff' }}>
           {isEditing ? "Salvar" : "Adicionar"}
         </Button>
       </div>
