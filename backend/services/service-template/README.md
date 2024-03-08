@@ -58,3 +58,12 @@ Use o comando que funcionar.
 
    > http://localhost:8080
 
+   
+   Resposta esperada:
+
+   ```bash
+  {
+    "message": "OK",
+    "status_code": 200
+  }
+   ```
