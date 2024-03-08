@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# Unit test / coverage reports
+.coverage
+.htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environments - this can vary depending on your setup
+.env
+.env.test
+.venv
+env/
+venv/
+node_modules/
+package-lock.json
+
+# Azure related
+local.settings.json
+
+# PyCharm, VS Code
+.idea/
+.vscode/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# convenience bash scripts
+dash-bff/run.sh
+service-metrics/run.sh
+service-users/run.sh
+service-metrics-data-lake/run.sh
+persistence-metrics-data-lake/run.sh
