@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Container, List, ListItem, ListItemText, Button, Box } from '@mui/material';
+import { Typography, Container, List, ListItem, ListItemText, Box } from '@mui/material';
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { CustomButton, UpdateButton } from './styles';
