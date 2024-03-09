@@ -18,7 +18,7 @@ export const StyledTextField = styled(TextField)({
 export const CustomButton = styled(Button)({
     backgroundColor: '#AC8DF2',
     '&:hover': {
-        backgroundColor: '#9C27B0',
+        backgroundColor: '#957BCF',
     },
     color: 'white',
     borderRadius: '5px',

@@ -3,7 +3,7 @@ import { Button, styled } from '@mui/material';
 export const CustomButton = styled(Button)({
     backgroundColor: '#AC8DF2',
     '&:hover': {
-        backgroundColor: '#9C27B0',
+        backgroundColor: '#957BCF',
     },
     color: 'white',
     borderRadius: '5px',
@@ -15,11 +15,11 @@ export const CustomButton = styled(Button)({
 });
 
 export const UpdateButton = styled(Button)({
-    backgroundColor: '#FECD2A',
+    backgroundColor: '#68B2C9',
     '&:hover': {
-        backgroundColor: '#FFC107',
+        backgroundColor: '#538FA2',
     },
-    color: 'black',
+    color: 'white',
     borderRadius: '5px',
     textAlign: 'center',
     textTransform: 'none',

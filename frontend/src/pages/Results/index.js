@@ -28,10 +28,10 @@ const Results = () => {
                     {resultsData.map((result) => (
                         <ListItem key={result.id} disablePadding>
                             <ListItemText
-                                primary={result.fileName}
+                                primary={<Typography variant="body1" sx={{ overflowWrap: 'break-word', wordWrap: 'break-word', maxWidth: '400px' }}>{result.fileName}</Typography>}
                                 secondary={`Data: ${result.date}`}
                             />
-                            <CustomButton variant="contained" color="primary" component={Link} to={`/results/${result.id}`}>
+                            <CustomButton variant="contained" color="primary" component={Link} to={`/results/${result.id}`} sx={{ minWidth: '100px' }}>
                                 Ver detalhes
                             </CustomButton>
                         </ListItem>
