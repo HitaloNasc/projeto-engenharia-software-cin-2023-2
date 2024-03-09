@@ -14,3 +14,10 @@ export const CustomButton = styled(Button)({
   margin: 'auto',
   display: 'block',
 });
+
+export const FileDetails = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginTop: '20px',
+});
