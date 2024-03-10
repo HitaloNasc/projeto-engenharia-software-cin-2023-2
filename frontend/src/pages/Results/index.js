@@ -19,7 +19,7 @@ const Results = () => {
                     <Typography variant="h5">
                         Resultados
                     </Typography>
-                    <UpdateButton variant="contained" color="primary" onClick={handleUpdate}>
+                    <UpdateButton variant="contained" color="primary" onClick={handleUpdate} sx={{ minWidth: '100px' }}>
                         Atualizar
                     </UpdateButton>
                 </Box>
@@ -31,7 +31,13 @@ const Results = () => {
                                 primary={<Typography variant="body1" sx={{ overflowWrap: 'break-word', wordWrap: 'break-word', maxWidth: '400px' }}>{result.fileName}</Typography>}
                                 secondary={`Data: ${result.date}`}
                             />
-                            <CustomButton variant="contained" color="primary" component={Link} to={`/results/${result.id}`} sx={{ minWidth: '100px' }}>
+                            <CustomButton
+                                variant="contained"
+                                color="primary"
+                                component={Link}
+                                to={`/results/${result.id}`}
+                                sx={{ minWidth: '100px', maxWidth: '200px', flexShrink: 0 }}
+                            >
                                 Ver detalhes
                             </CustomButton>
                         </ListItem>
