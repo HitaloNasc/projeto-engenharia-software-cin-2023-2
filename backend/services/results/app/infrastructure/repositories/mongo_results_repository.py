@@ -5,7 +5,7 @@ class MongoResultsRepository(Repository):
     def __init__(self, db_connection):
         self.collection = db_connection.get_collection("results")
 
-    async def delete(self, document_id):
+    async def delete(self, document_id):        
         result = await self.collection.delete_one({"_id": ObjectId(document_id)})
         return result.deleted_count > 0
 
