@@ -1,9 +1,9 @@
 import { Button, styled } from '@mui/material';
 
 export const CustomButton = styled(Button)({
-  backgroundColor: '#AC8DF2',
+  backgroundColor: '#0B409C',
   '&:hover': {
-    backgroundColor: '#957BCF',
+    backgroundColor: '#10316B',
   },
   color: 'white',
   borderRadius: '5px',

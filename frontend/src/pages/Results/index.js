@@ -19,7 +19,7 @@ const Results = () => {
                     <Typography variant="h5">
                         Resultados
                     </Typography>
-                    <UpdateButton variant="contained" color="primary" onClick={handleUpdate} sx={{ minWidth: '100px' }}>
+                    <UpdateButton variant="outlined" color="primary" onClick={handleUpdate} sx={{ minWidth: '100px' }}>
                         Atualizar
                     </UpdateButton>
                 </Box>

@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Logo from './logo.jpeg';
+import Logo from './logo.png';
 
 const defaultTheme = createTheme();
 
@@ -56,7 +56,7 @@ export default function FormLogin({ mode }) {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: '#AC8DF2' }}>
+            <Avatar sx={{ m: 1, bgcolor: '#0B409C' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -87,7 +87,7 @@ export default function FormLogin({ mode }) {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, backgroundColor: '#AC8DF2', '&:hover': { backgroundColor: '#7C5EB4' } }}
+                sx={{ mt: 3, mb: 2, backgroundColor: '#0B409C', '&:hover': { backgroundColor: '#10316B' } }}
               >
                 {buttonLabel}
               </Button>
