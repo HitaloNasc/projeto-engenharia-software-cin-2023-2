@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -7,9 +6,9 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import BackgroundImage from './background-image.png';
 import Logo from './logo.png';
 
 const defaultTheme = createTheme();
@@ -38,7 +37,7 @@ export default function FormLogin({ mode }) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: `url(${Logo})`,
+            backgroundImage: `url(${BackgroundImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -46,7 +45,7 @@ export default function FormLogin({ mode }) {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5F6FA' }}>
           <Box
             sx={{
               my: 8,
@@ -56,9 +55,7 @@ export default function FormLogin({ mode }) {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: '#0B409C' }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <img src={Logo} alt="Icon" style={{ width: '70%', height: '70%', marginBottom: '20px' }} />
             <Typography component="h1" variant="h5">
               {title}
             </Typography>
@@ -93,12 +90,12 @@ export default function FormLogin({ mode }) {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" sx={{ color: '#45454D', whiteSpace: 'nowrap'}}>
+                  <Link href="#" variant="body2" sx={{ color: '#45454D', whiteSpace: 'nowrap' }}>
                     Esqueceu a senha?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href={isLoginMode ? "/signup" : "/"} variant="body2" sx={{ color: '#45454D', whiteSpace: 'nowrap'}}>
+                  <Link href={isLoginMode ? "/signup" : "/"} variant="body2" sx={{ color: '#45454D', whiteSpace: 'nowrap' }}>
                     {isLoginMode
                       ? "Ainda não tem conta? Cadastre-se aqui"
                       : "Já tem uma conta? Faça login aqui"}

@@ -28,7 +28,7 @@ const Results = () => {
                     {resultsData.map((result) => (
                         <ListItem key={result.id} disablePadding>
                             <ListItemText
-                                primary={<Typography variant="body1" sx={{ overflowWrap: 'break-word', wordWrap: 'break-word', maxWidth: '400px' }}>{result.fileName}</Typography>}
+                                primary={<Typography variant="body1" sx={{ overflowWrap: 'break-word', wordWrap: 'break-word', maxWidth: '400px' }}>{result.fileName.length > 45 ? `${result.fileName.slice(0, 45)}...` : result.fileName}</Typography>}
                                 secondary={`Data: ${result.date}`}
                             />
                             <CustomButton

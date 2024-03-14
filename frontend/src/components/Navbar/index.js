@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { History } from '@mui/icons-material';
+import { AppBar, Toolbar, Typography, IconButton, Hidden } from '@mui/material';
+import ArticleIcon from '@mui/icons-material/Article';
 import { Link } from 'react-router-dom';
 import Logo from './logo.png';
 
@@ -12,9 +12,14 @@ function Navbar() {
           <Typography variant="h8" component={Link} to="/dashboard" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
             <img src={Logo} alt="Logo" style={{ height: '50px', marginRight: '10px' }} />
           </Typography>
-          <IconButton color="inherit" aria-label="history" component={Link} to="/results">
-            <History />
+          <IconButton color="inherit" aria-label="history" component={Link} to="/results" style={{ marginRight: '5px' }}>
+            <ArticleIcon />
           </IconButton>
+          <Hidden smDown>
+            <Typography variant="h6" component={Link} to="/results" style={{ textDecoration: 'none', color: 'inherit' }}>
+              Resultados
+            </Typography>
+          </Hidden>
         </Toolbar>
       </div>
     </AppBar>
