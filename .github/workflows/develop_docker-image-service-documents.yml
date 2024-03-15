@@ -30,14 +30,16 @@ jobs:
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ env.DOCKER_IMAGE_NAME }}:latest
 
-      - name: Login to Azure
-        uses: azure/login@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Azure CLI
+        uses: azure/CLI@v1
         with:
-          auth-type: IDENTITY
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_20B5DCD4D104450485EED7EC788526B1 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D8F66F26E77D4DEFB3FA154E2B04315B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_96C4013ECF0B48F3BC164657C644B94F }}
-          enable-AzPSSession: true
+          azcliversion: latest
+
+      - name: Login to Azure
+        run: az login --service-principal -u "${{ secrets.AZURE_CREDENTIALS.appId }}" -p "${{ secrets.AZURE_CREDENTIALS.password }}" --tenant "${{ secrets.AZURE_CREDENTIALS.tenant }}"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
