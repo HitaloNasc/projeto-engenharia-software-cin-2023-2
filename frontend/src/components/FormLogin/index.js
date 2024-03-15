@@ -10,13 +10,18 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BackgroundImage from './background-image.png';
 import Logo from './logo.png';
+import ReCaptcha from "react-google-recaptcha"
 
 const defaultTheme = createTheme();
 
 export default function FormLogin({ mode }) {
   const isLoginMode = mode === 'Login';
-  const title = isLoginMode ? 'Login' : 'Criar Conta';
-  const buttonLabel = isLoginMode ? 'Login' : 'Cadastrar';
+  const title = isLoginMode ? 'Acesse sua conta' : 'Criar Conta';
+  const buttonLabel = isLoginMode ? 'Login' : 'Criar conta';
+
+  const onChange = () => {
+    
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,6 +29,7 @@ export default function FormLogin({ mode }) {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      fullName: data.get('fullName'), 
     });
   };
 
@@ -60,6 +66,18 @@ export default function FormLogin({ mode }) {
               {title}
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              { !isLoginMode && 
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="fullName"
+                  label="Nome Completo"
+                  name="fullName"
+                  autoComplete="name"
+                  autoFocus
+                />
+              }
               <TextField
                 margin="normal"
                 required
@@ -68,7 +86,6 @@ export default function FormLogin({ mode }) {
                 label="E-mail"
                 name="email"
                 autoComplete="email"
-                autoFocus
               />
               <TextField
                 margin="normal"
@@ -80,6 +97,27 @@ export default function FormLogin({ mode }) {
                 id="password"
                 autoComplete="current-password"
               />
+              { !isLoginMode && 
+              <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="confirmPassword"
+              label="Confirme sua senha"
+              type="password"
+              id="confirmPassword"
+              autoComplete="new-password"
+              />
+              }
+
+            <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px', marginBottom: '10px' }}>
+                <ReCaptcha
+                    sitekey="6Lc7Y5kpAAAAAD4cohOqJvxo5b7Q9sruX2lE_DPy"
+                    onChange={onChange}
+                />
+            </Grid>
+
+
               <Button
                 type="submit"
                 fullWidth
