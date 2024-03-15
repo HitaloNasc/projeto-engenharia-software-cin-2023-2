@@ -7,6 +7,7 @@ from app.usecases.post_results_usecase import PostResultsUseCase
 from app.controllers.post_results_controller import PostResultsController
 from app.usecases.delete_results_usecase import DeleteResultsUseCase
 from app.controllers.delete_results_controller import DeleteResultsController
+from app.helpers.handler import handler
 
 results_route = Blueprint("results", __name__)
 
@@ -33,3 +34,12 @@ async def delete_state(document_id):
     delete_results_usecase = DeleteResultsUseCase(results_repository)
     delete_results_controller = DeleteResultsController(delete_results_usecase)
     return await delete_results_controller.delete_result(document_id)
+
+@results_route.route("/result/<document_id>", methods=["GET"])
+async def get_one_state(document_id):
+    results_repository = MongoResultsRepository(mongodb_connection)
+    result = await results_repository.find_one(document_id)
+    if result:
+        return handler.format_response(201, result)
+    else:
+        return handler.format_response(400, {'error': 'document_name and document_id are required'})
