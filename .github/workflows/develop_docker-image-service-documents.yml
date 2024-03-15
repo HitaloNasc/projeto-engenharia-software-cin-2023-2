@@ -20,7 +20,7 @@ jobs:
       - name: Build the Docker image
         run: docker build ./backend/services/service-documents --file ./backend/services/service-documents/Dockerfile --tag "${{ env.DOCKER_IMAGE_NAME }}:latest"
 
-      - name: Docker Login ${{ secrets.DOCKER_LOGIN }}
+      - name: Docker Login
         run: docker login --username ${{ secrets.DOCKER_LOGIN }} --password ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Tag the Docker image
