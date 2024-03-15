@@ -8,6 +8,7 @@ on:
 
 env:
   DOCKER_IMAGE_NAME: "service-documents"
+  AZURE_WEB_APP: "service-documents"
 
 jobs:
   build:
@@ -28,3 +29,16 @@ jobs:
 
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_20B5DCD4D104450485EED7EC788526B1 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D8F66F26E77D4DEFB3FA154E2B04315B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_96C4013ECF0B48F3BC164657C644B94F }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEB_APP }}
+          images: ${{ secrets.DOCKER_LOGIN }}/${{ env.DOCKER_IMAGE_NAME }}:latest
