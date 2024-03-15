@@ -37,9 +37,8 @@ jobs:
         uses: azure/CLI@v1
         with:
           azcliversion: latest
-
-      - name: Login to Azure
-        run: az login --service-principal -u "${{ secrets.AZURE_CREDENTIALS.appId }}" -p "${{ secrets.AZURE_CREDENTIALS.password }}" --tenant "${{ secrets.AZURE_CREDENTIALS.tenant }}"
+          inlineScript: |
+            az login --service-principal -u "${{ secrets.AZURE_CREDENTIALS.appId }}" -p "${{ secrets.AZURE_CREDENTIALS.password }}" --tenant "${{ secrets.AZURE_CREDENTIALS.tenant }}"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
