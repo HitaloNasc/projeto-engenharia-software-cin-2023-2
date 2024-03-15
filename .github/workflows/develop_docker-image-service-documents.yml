@@ -14,12 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Build the Docker image
-        run: docker build ./backend/services/service-documents --file Dockerfile --tag "${{ env.DOCKER_IMAGE_NAME }}:latest"
+        run: docker build . --file ./backend/services/service-documents/Dockerfile --tag "${{ env.DOCKER_IMAGE_NAME }}:latest"
+
       - name: Docker Login
-        run: docker login --username '${{secrets.DOCKER_LOGIN}}' --password '${{secrets.DOCKER_PASSWORD}}'
-      - name: Tag the Dcoker image
-        run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest '${{secrets.DOCKER_LOGIN}}'/'${{env.DOCKER_IMAGE_NAME}}':latest
+        run: docker login --username ${{ secrets.DOCKER_LOGIN }} --password ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Tag the Docker image
+        run: docker tag "${{ env.DOCKER_IMAGE_NAME }}:latest" ${{ secrets.DOCKER_LOGIN }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+
       - name: Push the Docker image
-        run: docker push '${{secrets.DOCKER_LOGIN}}'/'${{env.DOCKER_IMAGE_NAME}}':latest
+        run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ env.DOCKER_IMAGE_NAME }}:latest
