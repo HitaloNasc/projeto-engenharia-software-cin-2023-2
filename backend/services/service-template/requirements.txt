@@ -6,3 +6,4 @@ pydash
 pytest
 pytest-asyncio
 pytest-mock
+pymongo
