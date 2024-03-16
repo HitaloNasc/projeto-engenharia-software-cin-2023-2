@@ -28,3 +28,14 @@ jobs:
 
       - name: Push Docker Image to Azure Container Registry
         run: docker push ${{env.CONTAINER_NAME}}.azurecr.io/${{env.IMAGE_NAME}}:latest
+
+      - name: Deploy to Azure Container Instance
+        uses: azure/aci-deploy@v1
+        with:
+          resource-group: ${{ secrets.RESOURCE_GROUP }}
+          dns-name-label: ctservicedocuments
+          image: ${{env.CONTAINER_NAME}}.azurecr.io/${{env.IMAGE_NAME}}:latest
+          registry-login-server: ${{env.CONTAINER_NAME}}.azurecr.io
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          name: ctservicedocuments
