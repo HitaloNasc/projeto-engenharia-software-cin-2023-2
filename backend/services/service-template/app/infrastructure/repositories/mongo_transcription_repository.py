@@ -1,5 +1,6 @@
 from bson import ObjectId
 from app.infrastructure.repositories.repository import Repository
+from datetime import datetime
 
 
 class MongoTranscriptionRepository(Repository):
@@ -7,6 +8,7 @@ class MongoTranscriptionRepository(Repository):
         self.collection = db_connection.get_collection("transcriptions")
 
     async def insert(self, transcription_data):
+        transcription_data["created_at"] = datetime.now()
         result = await self.collection.insert_one(transcription_data)
         return str(result.inserted_id)
 
