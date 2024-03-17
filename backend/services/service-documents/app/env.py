@@ -2,4 +2,4 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-PORT = os.getenv("PORT", 8080)
+PORT = os.getenv("PORT", 80)
