@@ -22,12 +22,27 @@ async def get_transcriptions():
 
 @transcription_route.route("/transcriptions/", methods=["POST"])
 async def create_transcription():
-    transcription_data = await request.json
-    transcription_repository = MongoTranscriptionRepository(mongodb_connection)
-    create_transcription_usecase = CreateTranscriptionUseCase(transcription_repository)
-    transcription_id = await create_transcription_usecase.execute(transcription_data)
+    transcription_file = await request.files['transcription_file'].read()
     
-    return {"transcription_id": transcription_id}, 201
+    if not transcription_file:
+        return {"message": "No file provided"}, 400
+    
+    transcription_text = await CreateTranscriptionUseCase.extract_text_from_pdf(transcription_file)
+    
+    if transcription_text:
+
+        transcription_data = {
+            "document_name": transcription_file.filename,
+            "transcription": transcription_text
+        }
+
+        transcription_repository = MongoTranscriptionRepository(mongodb_connection)
+        create_transcription_usecase = CreateTranscriptionUseCase(transcription_repository)
+        transcription_id = await create_transcription_usecase.execute(transcription_data)
+    
+        return {"transcription_id": transcription_id}, 201
+    
+    return {"message": "Failed to extract transcription"}, 500
 
 
 @transcription_route.route("/transcriptions/<transcription_id>", methods=["GET"])

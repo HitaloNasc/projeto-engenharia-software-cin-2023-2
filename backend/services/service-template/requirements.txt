@@ -1,9 +1,12 @@
 quart
 motor
+pillow
 python-dotenv
 pydantic
 pydash
+pymongo
+PyMuPDF
+pytesseract
 pytest
 pytest-asyncio
 pytest-mock
-pymongo
