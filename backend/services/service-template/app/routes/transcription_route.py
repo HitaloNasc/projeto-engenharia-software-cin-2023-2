@@ -22,7 +22,8 @@ async def get_transcriptions():
 
 @transcription_route.route("/transcriptions/", methods=["POST"])
 async def create_transcription():
-    transcription_file = await request.files['transcription_file'].read()
+    files = await request.files
+    transcription_file = files['transcription_file']
     
     if not transcription_file:
         return {"message": "No file provided"}, 400

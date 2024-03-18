@@ -2,7 +2,7 @@ from app.usecases.usecase import Usecase
 from app.infrastructure.repositories.repository import Repository
 from typing import Dict, Any
 import fitz
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageFilter
 import pytesseract
 from io import BytesIO
 
@@ -18,7 +18,7 @@ class CreateTranscriptionUseCase(Usecase):
 
     async def extract_text_from_pdf(pdf_file):
         
-        pdf_data = await pdf_file.read()
+        pdf_data = pdf_file.read()
         
         pdf_stream = BytesIO(pdf_data)
 
@@ -30,9 +30,16 @@ class CreateTranscriptionUseCase(Usecase):
             
             page = pdf_document.load_page(page_number)
 
-            image_matrix = page.get_pixmap(matrix=fitz.Matrix(3, 3))
+            image_matrix = page.get_pixmap()
 
             image = Image.frombytes("RGB", [image_matrix.width, image_matrix.height], image_matrix.samples)
+
+            enhancer = ImageEnhance.Contrast(image)
+            image = enhancer.enhance(1.5)
+            enhancer = ImageEnhance.Brightness(image)
+            image = enhancer.enhance(1.2)
+            image = image.filter(ImageFilter.SHARPEN)
+            image = image.filter(ImageFilter.SMOOTH_MORE)
 
             #pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
