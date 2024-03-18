@@ -1,0 +1,39 @@
+[
+    {
+        "id": "c82a452b-e47a-4378-acce-e5423872f65c",
+        "name": "Pastel de frango",
+        "price": 12.9,
+        "availability": true
+    },
+    {
+        "id": "6522713e-8aca-4299-aece-17186f5565c5",
+        "name": "pastel",
+        "price": 5.5,
+        "availability": true
+    },
+    {
+        "id": "14179a99-0e8b-40f7-beed-355f7f8e31a2",
+        "name": "AA-TUDO",
+        "price": 19.9,
+        "availability": true,
+        "updatedAt": "2024-01-23T20:58:59.756Z"
+    },
+    {
+        "id": "9361f1da-ab21-473a-bb83-a468e6036659",
+        "name": "XX-Tudo",
+        "price": 21,
+        "description": "Lorem Ipson",
+        "availability": true,
+        "createdAt": "2024-01-23T19:16:53.489Z",
+        "updatedAt": "2024-01-23T19:16:53.490Z"
+    },
+    {
+        "id": "97dd1914-06ec-4e6b-8f98-6a0251f5318c",
+        "name": "Coxinha",
+        "price": 3.5,
+        "description": "Sabor: Frango",
+        "availability": true,
+        "createdAt": "2024-01-25T20:56:34.233Z",
+        "updatedAt": "2024-01-25T20:56:34.233Z"
+    }
+  ]
