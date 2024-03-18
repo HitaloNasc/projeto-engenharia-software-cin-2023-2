@@ -1,21 +1,23 @@
 
 # 🔎 DataHunt - Projeto de Engenharia de Software
 
-Esse é um repositório destinado ao projeto DataHunt, cujo objetivo é aplicar conceitos e conteúdos vistos ao longo da disciplina de Engenharia de Software do Centro de Informática (CIn) da Universidade Federal de Pernambuco (UFPE).
+Este é um repositório destinado ao projeto DataHunt, cujo objetivo é aplicar conceitos e conteúdos vistos ao longo da disciplina de Engenharia de Software do Centro de Informática (CIn) da Universidade Federal de Pernambuco (UFPE).
 
-Nesse repositório, é possível encontrar os códigos desenvolvidos ao decorrer do projeto e também informações relevantes sobre o projeto, como quem são os autores do projeto, quais são as tecnologias utilizadas, etc.
+<img src="frontend/src/assets/logo.png">
+
+Neste repositório, é possível encontrar os códigos desenvolvidos ao decorrer do projeto e também informações relevantes sobre o projeto, como quem são os autores do projeto, quais são as tecnologias utilizadas, etc.
 
 ------
 
 ## Escopo
 
-O projeto consiste em desenvolver uma ferramenta de extração de metadados que possa ser usada pelo Laboratório História e Memória (LAHM) da UFPE. Atualmente, o LAHM conta com mais de 100.000 documentos que passarão por um processo de digitalização e catalogação das informações. Tendo em vista que o processo de catalogação das informações ocorre de maneira manual, nosso propósito é desenvolver uma solução que facilite a extração, organização e acesso aos metadados dos processos digitalizados.Para uma versão inicial do produto, a solução desenvolvida será focada na extração de informações de processos trabalhistas.
+O projeto consiste em desenvolver uma ferramenta de extração de metadados que possa ser usada pelo Laboratório História e Memória (LAHM) da UFPE. Atualmente, o LAHM conta com mais de 100.000 documentos que passarão por um processo de digitalização e catalogação das informações. Tendo em vista que o processo de catalogação das informações ocorre de maneira manual, nosso propósito é desenvolver uma solução que facilite a extração, organização e acesso aos metadados dos processos digitalizados. Para uma versão inicial do produto, a solução desenvolvida será focada na extração de informações de processos trabalhistas.
 
 ------
 
 ## Metodologia de desenvolvimento utilizada
 
-A metodologia para o desenvolvimento do projeto é ágil, com uma combinação entre alguns ritos do Scrum e o quadro do Kanban.
+A metodologia para o desenvolvimento do projeto é híbrida, com uma combinação entre alguns ritos do Scrum e o quadro do Kanban.
 
 ------
 
