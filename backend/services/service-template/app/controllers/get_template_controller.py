@@ -1,14 +1,22 @@
-from app.usecases.usecase import Usecase
-from app.helpers.handler import handler
-from app.helpers.http_status import HTTP_STATUS
+# arquivo: controllers/generate_form_controller.py
 
+from quart import request, jsonify
+from app.usecases.post_extract_usecase import GenerateFormUsecase
 
-class GetTemplateController:
-    def __init__(self, usecase: Usecase):
+class GenerateFormController:
+    def __init__(self, usecase):
         self.usecase = usecase
 
-    async def execute(self):
+    async def handle_request(self):
+        try:
+            data = await request.get_json()
+            text = data.get("text")
 
-        response_list = await self.usecase.execute()
+            if not text:
+                return jsonify({"error": "Texto não fornecido"}), 400
 
-        return handler.format_response(HTTP_STATUS.OK.value, response_list)
+            form = self.usecase.generate_form(text)
+            return jsonify({"form": form}), 200
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500

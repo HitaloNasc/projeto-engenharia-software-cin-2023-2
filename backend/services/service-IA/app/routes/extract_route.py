@@ -1,12 +1,15 @@
-from quart import Blueprint
-from app.controllers.post_extract_controller import ExtractController
+# arquivo: routes.py
 
+from quart import Quart
+from app.controllers.post_extract_controller import GenerateFormController
+from app.usecases.post_extract_usecase import GenerateFormUsecase
 
-extract_route = Blueprint("extract", __name__)
+app = Quart(__name__)
 
+@app.route("/generate-form", methods=["POST"])
+async def generate_form():
+    controller = GenerateFormController(GenerateFormUsecase(api_key="AIzaSyCVWYqPrS6mkOhNv4LtJrOE4p87X7IX26c"))
+    return await controller.handle_request()
 
-@extract_route.route("/extract", methods=["POST"])
-async def post_state():
-    extract_controller = ExtractController()
-
-    return await extract_controller.execute()
+if __name__ == "__main__":
+    app.run()
