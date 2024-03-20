@@ -9,7 +9,6 @@ from app.routes.results_route import results_route
 app = Quart(__name__)
 app.config.from_object(__name__)
 
-
 # routes
 @app.route("/", methods=["GET"])
 def health():

@@ -1,0 +1,17 @@
+import google.generativeai as genai
+genai.configure(api_key = "AIzaSyCVWYqPrS6mkOhNv4LtJrOE4p87X7IX26c")
+model = genai.GenerativeModel('gemini-pro')
+
+response = model.generate_content(""" 
+    Esse texto foi extraído de um pdf a partir de um OCR. Em virtude disso, há muitos erros quanto à legibilidade do OCR. Preciso que você reescreva ele da forma mais coesa possível. 
+    Aqui está o texto: 
+    '<Texto Aqui>'
+""")
+
+print(response.text)
+
+form = model.generate_content(f"A partir do texto {response.text}, preencha um formulário com as seguintes informações: Código, ano, processo, tipo Processo, JCJ, Resultado, Reclamante, Reclamado  e salve em formato JSON.")
+
+print (form.text)
+
+
