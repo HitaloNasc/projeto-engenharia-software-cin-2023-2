@@ -54,7 +54,7 @@ const Results = () => {
                             >
                                 Ver detalhes
                             </CustomButton>
-                            <DeleteIcon color="#F5F6FA" sx={{ cursor: 'pointer', color: '#45454D' }} onClick={() => handleDelete(result.id)} />
+                            <DeleteIcon data-testid={`delete-button-${result.id}`} color="#F5F6FA" sx={{ cursor: 'pointer', color: '#45454D' }} onClick={() => handleDelete(result.id)} />
                         </ListItem>
                     ))}
                 </List>
