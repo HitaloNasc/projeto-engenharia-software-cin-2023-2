@@ -6,64 +6,75 @@ from app.usecases.create_transcription_usecase import CreateTranscriptionUseCase
 from app.usecases.get_transcription_by_id_usecase import GetTranscriptionByIdUseCase
 from app.usecases.delete_transcription_usecase import DeleteTranscriptionUseCase
 from app.controllers.get_transcription_controller import GetTranscriptionController
-
+from base64 import b64decode
+from io import BytesIO
 
 transcription_route = Blueprint("transcription", __name__)
 
 
-@transcription_route.route("/transcriptions/", methods=["GET"])
+@transcription_route.route("/transcription/", methods=["GET"])
 async def get_transcriptions():
     transcription_repository = MongoTranscriptionRepository(mongodb_connection)
-    get_transcription_usecase = GetTranscriptionUseCase(transcription_repository)
-    get_transcription_controller = GetTranscriptionController(get_transcription_usecase)
+    get_transcription_usecase = GetTranscriptionUseCase(
+        transcription_repository)
+    get_transcription_controller = GetTranscriptionController(
+        get_transcription_usecase)
 
     return await get_transcription_controller.execute()
 
 
-@transcription_route.route("/transcriptions/", methods=["POST"])
+@transcription_route.route("/transcription/", methods=["POST"])
 async def create_transcription():
-    files = await request.files
-    transcription_file = files['transcription_file']
-    
+    data = await request.json
+
+    transcription_file = data['file']
+    filename = data['filename']
+
+    transcription_file = b64decode(transcription_file)
+    transcription_file = BytesIO(transcription_file)
+
     if not transcription_file:
         return {"message": "No file provided"}, 400
-    
+
     transcription_text = await CreateTranscriptionUseCase.extract_text_from_pdf(transcription_file)
-    
     if transcription_text:
 
         transcription_data = {
-            "document_name": transcription_file.filename,
+            "document_name": filename,
             "transcription": transcription_text
         }
 
-        transcription_repository = MongoTranscriptionRepository(mongodb_connection)
-        create_transcription_usecase = CreateTranscriptionUseCase(transcription_repository)
+        transcription_repository = MongoTranscriptionRepository(
+            mongodb_connection)
+        create_transcription_usecase = CreateTranscriptionUseCase(
+            transcription_repository)
         transcription_id = await create_transcription_usecase.execute(transcription_data)
-    
+
         return {"transcription_id": transcription_id}, 201
-    
+
     return {"message": "Failed to extract transcription"}, 500
 
 
-@transcription_route.route("/transcriptions/<transcription_id>", methods=["GET"])
+@transcription_route.route("/transcription/<transcription_id>", methods=["GET"])
 async def get_transcription_by_id(transcription_id):
     transcription_repository = MongoTranscriptionRepository(mongodb_connection)
-    get_transcription_by_id_usecase = GetTranscriptionByIdUseCase(transcription_repository)
+    get_transcription_by_id_usecase = GetTranscriptionByIdUseCase(
+        transcription_repository)
     transcription = await get_transcription_by_id_usecase.execute(transcription_id)
-    
+
     if transcription:
         return transcription
     else:
         return {"message": "Transcription not found"}, 404
 
 
-@transcription_route.route("/transcriptions/<transcription_id>", methods=["DELETE"])
+@transcription_route.route("/transcription/<transcription_id>", methods=["DELETE"])
 async def delete_transcription(transcription_id):
     transcription_repository = MongoTranscriptionRepository(mongodb_connection)
-    delete_transcription_usecase = DeleteTranscriptionUseCase(transcription_repository)
+    delete_transcription_usecase = DeleteTranscriptionUseCase(
+        transcription_repository)
     deleted_count = await delete_transcription_usecase.execute(transcription_id)
-    
+
     if deleted_count:
         return {"message": "Transcription deleted successfully"}, 200
     else:
