@@ -20,7 +20,7 @@ describe('Navbar component', () => {
                 <Navbar />
             </BrowserRouter>
         );
-        const novaAnaliseLink = screen.getByTestId('nova-analise-icon'); // Use uma expressão regular para procurar um texto parcialmente correspondente
+        const novaAnaliseLink = screen.getByTestId('nova-analise-icon');
         expect(novaAnaliseLink).toBeInTheDocument();
     });
 
