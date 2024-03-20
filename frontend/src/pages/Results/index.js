@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Container, List, ListItem, ListItemText, Box } from '@mui/material';
 import Navbar from '../../components/Navbar';
+import DeleteConfirmationModal from '../../components/DeleteConfirmationModal';
 import { Link } from 'react-router-dom';
 import { CustomButton, UpdateButton } from './styles';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Results = () => {
     const resultsData = require('./results.json');
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [selectedResultId, setSelectedResultId] = useState(null);
 
     const handleUpdate = () => {
         console.log('Atualizar resultados');
+    };
+
+    const handleDelete = (resultId) => {
+        setSelectedResultId(resultId);
+        setDeleteModalOpen(true);
+    };
+
+    const handleConfirmDelete = () => {
+        console.log('Excluir análise com ID:', selectedResultId);
+        setDeleteModalOpen(false);
     };
 
     return (
@@ -36,13 +50,20 @@ const Results = () => {
                                 color="primary"
                                 component={Link}
                                 to={`/results/${result.id}`}
-                                sx={{ minWidth: '100px', maxWidth: '200px', flexShrink: 0 }}
+                                sx={{ minWidth: '100px', maxWidth: '200px', flexShrink: 0, marginRight: '10px' }}
                             >
                                 Ver detalhes
                             </CustomButton>
+                            <DeleteIcon data-testid={`delete-button-${result.id}`} color="#F5F6FA" sx={{ cursor: 'pointer', color: '#45454D' }} onClick={() => handleDelete(result.id)} />
                         </ListItem>
                     ))}
                 </List>
+
+                <DeleteConfirmationModal
+                    open={deleteModalOpen}
+                    onClose={() => setDeleteModalOpen(false)}
+                    onConfirm={handleConfirmDelete}
+                />
             </Container>
         </>
     );

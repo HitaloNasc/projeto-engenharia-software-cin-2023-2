@@ -34,6 +34,40 @@ Essas são as principais tecnologias utilizadas no desenvolvimento do projeto:
 
 ------
 
+## Como rodar o projeto?
+
+### Frontend
+
+Para instalar todas as dependências, utilize:
+```
+yarn install
+```
+Após a instalação, execute o projeto utilizando: 
+```
+yarn start
+```
+
+Caso queira rodar os testes realizados no frontend da aplicação, utilize:
+```
+yarn test
+```
+
+------
+
+## Principais Artefatos 
+
+* **Apresentação Final:** https://www.canva.com/design/DAF_yRk4ZQo/QlvQVnVaqv5KIVeFMfSAoQ/view?utm_content=DAF_yRk4ZQo&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
+* **Status Report:** https://www.canva.com/design/DAF_OKhKxq0/n-JdhFbUQFtcsHxmwnQgQg/view?utm_content=DAF_OKhKxq0&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
+* **Screencast:** https://drive.google.com/file/d/1NTLPaYtlH-kZ6X39Qgq8L4cOBjru-tYH/view?usp=sharing
+
+* **Ideação da solução:** https://www.figma.com/file/r0BDeVGxF8yueBigWVMrZj/Untitled?type=whiteboard&node-id=0%3A1&t=VQklLWLjcGsrD2dL-1
+
+* **Artefatos de documentação** https://github.com/HitaloNasc/projeto-engenharia-software-cin-2023-2/tree/main/documents
+
+------
+
 ## Autores do projeto 
 
 Esse é o time de alunos, da graduação em Sistemas de Informações, responsável pela idealização e desenvolvimento do projeto:

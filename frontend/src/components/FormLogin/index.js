@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from 'react';
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -11,24 +11,51 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import BackgroundImage from "./background-image.png";
 import Logo from "./logo.png";
 import ReCaptcha from "react-google-recaptcha";
+import { useNavigate } from 'react-router-dom';
+import { validateForm } from './formValidation';
 
 const defaultTheme = createTheme();
 
 export default function FormLogin({ mode }) {
-  const isLoginMode = mode === "Login";
-  const title = isLoginMode ? "Acesse sua conta" : "Criar Conta";
-  const buttonLabel = isLoginMode ? "Login" : "Criar conta";
+  const isLoginMode = mode === 'Login';
+  const [isLoading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isRecaptchaVerified, setRecaptchaVerified] = useState(false);
+  const title = isLoginMode ? 'Acesse sua conta' : 'Criar Conta';
+  const buttonLabel = isLoginMode ? 'Login' : 'Criar conta';
+  const navigate = useNavigate();
 
-  const onChange = () => {};
+  const onChange = () => {
+    setRecaptchaVerified(true);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      fullName: data.get("fullName"),
-    });
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+      fullName: formData.get("fullName"),
+      confirmPassword: formData.get("confirmPassword"),
+    };
+
+    const validationErrors = validateForm(data, isLoginMode);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    if (!isRecaptchaVerified) {
+      setErrors({ recaptcha: "Por favor, preencha o ReCaptcha" });
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/dashboard');
+    }, 3000);
   };
 
   return (
@@ -91,6 +118,8 @@ export default function FormLogin({ mode }) {
             >
               {!isLoginMode && (
                 <TextField
+                  error={Boolean(errors.fullName)}
+                  helperText={errors.fullName}
                   margin="normal"
                   required
                   fullWidth
@@ -102,6 +131,8 @@ export default function FormLogin({ mode }) {
                 />
               )}
               <TextField
+                error={Boolean(errors.email)}
+                helperText={errors.email}
                 margin="normal"
                 required
                 fullWidth
@@ -111,6 +142,8 @@ export default function FormLogin({ mode }) {
                 autoComplete="email"
               />
               <TextField
+                error={Boolean(errors.password)}
+                helperText={errors.password}
                 margin="normal"
                 required
                 fullWidth
@@ -122,6 +155,8 @@ export default function FormLogin({ mode }) {
               />
               {!isLoginMode && (
                 <TextField
+                  error={Boolean(errors.confirmPassword)}
+                  helperText={errors.confirmPassword}
                   margin="normal"
                   required
                   fullWidth
@@ -148,8 +183,14 @@ export default function FormLogin({ mode }) {
                   sitekey="6Lc7Y5kpAAAAAD4cohOqJvxo5b7Q9sruX2lE_DPy"
                   onChange={onChange}
                 />
-              </Grid>
 
+
+              </Grid>
+              {errors.recaptcha && (
+                <Typography color="error" variant="caption" align="center">
+                  {errors.recaptcha}
+                </Typography>
+              )}
               <Button
                 type="submit"
                 fullWidth
@@ -160,8 +201,9 @@ export default function FormLogin({ mode }) {
                   backgroundColor: "#0B409C",
                   "&:hover": { backgroundColor: "#10316B" },
                 }}
+                disabled={isLoading}
               >
-                {buttonLabel}
+                {isLoading ? 'Carregando...' : buttonLabel}
               </Button>
               <Grid container>
                 <Grid item xs>
