@@ -4,10 +4,12 @@ from app.helpers.handler import handler
 from app.helpers.http_status import HTTP_STATUS
 from app.helpers.error import INTERNAL_SERVER_ERROR, NOT_FOUND
 from app.helpers.error import ApplicationException
-from app.routes.results_route import results_route
+from app.routes.extract_route import extract_route
+
 
 app = Quart(__name__)
 app.config.from_object(__name__)
+
 
 # routes
 @app.route("/", methods=["GET"])
@@ -16,7 +18,7 @@ def health():
     
 
 app.register_blueprint(swagger_ui)
-app.register_blueprint(results_route)
+app.register_blueprint(extract_route)
 
 
 # not found middleware
