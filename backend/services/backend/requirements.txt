@@ -1,0 +1,10 @@
+quart
+motor
+python-dotenv
+pydantic
+pydash
+pytest
+pytest-asyncio
+pytest-mock
+Quart-JWT-Extended
+aiohttp
