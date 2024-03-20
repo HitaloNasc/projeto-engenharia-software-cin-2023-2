@@ -14,7 +14,7 @@ function Navbar() {
             <img src={Logo} alt="Logo" style={{ height: '50px', marginRight: '10px' }} />
           </Typography>
           <IconButton color="inherit" aria-label="history" component={Link} to="/dashboard" style={{ marginRight: '5px' }}>
-            <AddIcon />
+            <AddIcon data-testid="nova-analise-icon" />
           </IconButton>
           <Hidden smDown>
             <Typography variant="h6" component={Link} to="/dashboard" style={{ textDecoration: 'none', color: 'inherit', marginRight: '8px' }}>
@@ -22,7 +22,7 @@ function Navbar() {
             </Typography>
           </Hidden>
           <IconButton color="inherit" aria-label="history" component={Link} to="/results" style={{ marginRight: '5px' }}>
-            <ArticleIcon />
+            <ArticleIcon data-testid="resultados-icon" />
           </IconButton>
           <Hidden smDown>
             <Typography variant="h6" component={Link} to="/results" style={{ textDecoration: 'none', color: 'inherit' }}>
