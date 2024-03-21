@@ -1,5 +1,4 @@
 from app.infrastructure.repositories.repository import Repository
-from bson import ObjectId
 
 
 class MongoDocumentsMetadataRepository(Repository):

@@ -10,15 +10,21 @@ from app.controllers.post_insert_document_controller import PostInsertDocumentCo
 from app.controllers.delete_document_controller import DeleteDocumentController
 from app.controllers.get_document_controller import GetDocumentController
 from app.controllers.get_by_id_document_controller import GetByIdDocumentController
-
+from base64 import b64decode
+from io import BytesIO
 
 document_route = Blueprint("document", __name__)
 
 
 @document_route.route("/document/", methods=["POST"])
 async def insert_document():
-    files = await request.files
-    file = files["file"]
+    data = await request.json
+
+    file = data['file']
+    file = b64decode(file)
+    file = BytesIO(file)
+    filename = data['filename']
+
     document_storage = DocumentsBlobStorage()
     repository = MongoDocumentsMetadataRepository(
         mongodb_connection
@@ -28,7 +34,7 @@ async def insert_document():
     insert_document_controller = PostInsertDocumentController(
         insert_document_usecase)
 
-    return await insert_document_controller.execute(file)
+    return await insert_document_controller.execute(file, filename)
 
 
 @document_route.route("/document/<string:_id>", methods=["DELETE"])

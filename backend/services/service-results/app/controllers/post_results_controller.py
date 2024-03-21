@@ -38,7 +38,7 @@ class PostResultsController:
         # Chamar o caso de uso com os parâmetros extraídos
         result = await self.usecase.execute(document_name, document_id, form)
 
-        return handler.format_response(201, result)
+        return handler.format_response(200, result)
 
 
 post_results_controller = PostResultsController()
