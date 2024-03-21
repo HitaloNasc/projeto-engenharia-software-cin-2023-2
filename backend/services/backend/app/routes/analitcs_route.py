@@ -1,6 +1,9 @@
 from quart import Blueprint, request
 # from quart_jwt_extended import jwt_required, get_jwt_identity
-from app.infrastructure.apis import aiohttp_service_documents_api, aiohttp_service_transcription_api, aiohttp_service_ia_api, aiohttp_service_results_api
+from app.infrastructure.apis.aiohttp_service_documents_api import AiohttpServiceDocumentsApi
+from app.infrastructure.apis.aiohttp_service_transcription_api import AiohttpTranscriptionDocumentsApi
+from app.infrastructure.apis.aiohttp_service_ia_api import AiohttpServiceIaApi
+from app.infrastructure.apis.aiohttp_service_results_api import AiohttpServiceResultsApi
 from app.controllers.start_extract_metadata_controller import StartExtractMetadataController
 from app.usecases.start_extract_metadata_usecase import StartExtractMetadataUseCase
 
@@ -16,10 +19,10 @@ async def start():
     filename = data.get("filename")
 
     start_extract_metadata_usecase = StartExtractMetadataUseCase(
-        service_documents_api=aiohttp_service_documents_api,
-        service_ocr_api=aiohttp_service_transcription_api,
-        service_ia_api=aiohttp_service_ia_api,
-        service_results_api=aiohttp_service_results_api
+        service_documents_api=AiohttpServiceDocumentsApi(),
+        service_ocr_api=AiohttpTranscriptionDocumentsApi(),
+        service_ia_api=AiohttpServiceIaApi(),
+        service_results_api=AiohttpServiceResultsApi()
     )
 
     start_extract_metadata_controller = StartExtractMetadataController(
