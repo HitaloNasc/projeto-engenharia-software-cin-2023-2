@@ -30,15 +30,13 @@ Estas são as principais tecnologias utilizadas no desenvolvimento do projeto:
 | `React.js` | Biblioteca para criação de interfaces web reativas e baseadas em componentização | Permitirá construir interfaces de usuário interativas e reutilizáveis. Será possível criar componentes que poderão ser reutilizados e combinados para criar interfaces complexas. |
 | `Quart` | Framework assíncrono para desenvolvimento web em Python, baseado no Flask e projetado para alta concorrência.| Define rotas para manipular solicitações HTTP, aproveitando operações assíncronas para lidar com I/O intensivo, como acesso a banco de dados e chamadas de API.|
 | `Pytesseract` | Biblioteca em Python para interface com o Tesseract-OCR Engine, que reconhece texto em imagens.| Permite extrair texto de imagens de forma simples e eficiente, usando os recursos do Tesseract-OCR Engine.|
-| `Git` | Biblioteca em Python para interface com o Tesseract-OCR Engine, que reconhece texto em imagens.| Permite extrair texto de imagens de forma simples e eficiente, usando os recursos do Tesseract-OCR Engine.|
+| `Git` | Sistema de controle de versão distribuído amplamente utilizado no desenvolvimento de software. | Permite rastrear e gerenciar as alterações no código-fonte de um projeto, facilitando o trabalho colaborativo, o acompanhamento de versões e a integração de alterações.|
 
 ------
 
 ## Como rodar o projeto?
 
-### Frontend
-
-Para instalar todas as dependências, utilize:
+Entre na pasta 'frontend' e, para instalar todas as dependências, utilize:
 ```
 yarn install
 ```
@@ -47,7 +45,7 @@ Após a instalação, execute o projeto utilizando:
 yarn start
 ```
 
-Caso queira rodar os testes realizados no frontend da aplicação, utilize:
+Caso queira rodar os testes realizados na aplicação, utilize:
 ```
 yarn test
 ```
