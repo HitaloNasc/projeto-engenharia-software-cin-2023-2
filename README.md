@@ -17,28 +17,26 @@ O projeto consiste em desenvolver uma ferramenta de extração de metadados que 
 
 ## Metodologia de desenvolvimento utilizada
 
-A metodologia para o desenvolvimento do projeto é híbrida, com uma combinação entre alguns ritos do Scrum e o quadro do Kanban.
+Optamos por uma abordagem metodológica híbrida, integrando elementos selecionados do Scrum e estrutura do Kanban, de forma a aproveitar o melhor de ambas as tecnologias e adaptá-las às nossas necessidades e recursos disponíveis.
 
 ------
 
 ## Tecnologias utilizadas
 
-Essas são as principais tecnologias utilizadas no desenvolvimento do projeto:
+Estas são as principais tecnologias utilizadas no desenvolvimento do projeto:
 
 | Ferramenta | Descrição | Uso 
 | --- | --- | --- |
 | `React.js` | Biblioteca para criação de interfaces web reativas e baseadas em componentização | Permitirá construir interfaces de usuário interativas e reutilizáveis. Será possível criar componentes que poderão ser reutilizados e combinados para criar interfaces complexas. |
 | `Quart` | Framework assíncrono para desenvolvimento web em Python, baseado no Flask e projetado para alta concorrência.| Define rotas para manipular solicitações HTTP, aproveitando operações assíncronas para lidar com I/O intensivo, como acesso a banco de dados e chamadas de API.|
 | `Pytesseract` | Biblioteca em Python para interface com o Tesseract-OCR Engine, que reconhece texto em imagens.| Permite extrair texto de imagens de forma simples e eficiente, usando os recursos do Tesseract-OCR Engine.|
-| `Git` | Biblioteca em Python para interface com o Tesseract-OCR Engine, que reconhece texto em imagens.| Permite extrair texto de imagens de forma simples e eficiente, usando os recursos do Tesseract-OCR Engine.|
+| `Git` | Sistema de controle de versão distribuído amplamente utilizado no desenvolvimento de software. | Permite rastrear e gerenciar as alterações no código-fonte de um projeto, facilitando o trabalho colaborativo, o acompanhamento de versões e a integração de alterações.|
 
 ------
 
 ## Como rodar o projeto?
 
-### Frontend
-
-Para instalar todas as dependências, utilize:
+Entre na pasta 'frontend' e, para instalar todas as dependências, utilize:
 ```
 yarn install
 ```
@@ -47,7 +45,7 @@ Após a instalação, execute o projeto utilizando:
 yarn start
 ```
 
-Caso queira rodar os testes realizados no frontend da aplicação, utilize:
+Caso queira rodar os testes realizados na aplicação, utilize:
 ```
 yarn test
 ```
@@ -56,21 +54,23 @@ yarn test
 
 ## Principais Artefatos 
 
-* **Apresentação Final:** https://www.canva.com/design/DAF_yRk4ZQo/QlvQVnVaqv5KIVeFMfSAoQ/view?utm_content=DAF_yRk4ZQo&utm_campaign=designshare&utm_medium=link&utm_source=editor
+[Apresentação Final](https://www.canva.com/design/DAF_yRk4ZQo/QlvQVnVaqv5KIVeFMfSAoQ/view?utm_content=DAF_yRk4ZQo&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
-* **Status Report:** https://www.canva.com/design/DAF_OKhKxq0/n-JdhFbUQFtcsHxmwnQgQg/view?utm_content=DAF_OKhKxq0&utm_campaign=designshare&utm_medium=link&utm_source=editor
+[Status Report](https://www.canva.com/design/DAF_OKhKxq0/n-JdhFbUQFtcsHxmwnQgQg/view?utm_content=DAF_OKhKxq0&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
-* **Screencast:** https://drive.google.com/file/d/1NTLPaYtlH-kZ6X39Qgq8L4cOBjru-tYH/view?usp=sharing
+[Screencast](https://drive.google.com/file/d/1NTLPaYtlH-kZ6X39Qgq8L4cOBjru-tYH/view?usp=sharing)
 
-* **Ideação da solução:** https://www.figma.com/file/r0BDeVGxF8yueBigWVMrZj/Untitled?type=whiteboard&node-id=0%3A1&t=VQklLWLjcGsrD2dL-1
+[Ideação da solução](https://www.figma.com/file/r0BDeVGxF8yueBigWVMrZj/Untitled?type=whiteboard&node-id=0%3A1&t=VQklLWLjcGsrD2dL-1)
 
-* **Artefatos de documentação** https://github.com/HitaloNasc/projeto-engenharia-software-cin-2023-2/tree/main/documents
+[Artefatos de documentação](https://github.com/HitaloNasc/projeto-engenharia-software-cin-2023-2/tree/main/documents)
+
+[Deploy](http://datahunt.apamb8gea7bfhaad.eastus.azurecontainer.io/dashboard)
 
 ------
 
 ## Autores do projeto 
 
-Esse é o time de alunos, da graduação em Sistemas de Informações, responsável pela idealização e desenvolvimento do projeto:
+Este é o time de alunos, da graduação em Sistemas de Informação, responsável pela idealização e desenvolvimento do projeto:
 
 | [<img src="https://avatars.githubusercontent.com/u/99020717?v=4" width=115><br><sub>Douglas Araújo</sub>](https://github.com/thedouglasaraujo) | [<img src="https://avatars.githubusercontent.com/u/109428550?v=4" width=115><br><sub>Hallan Ângelo</sub>](https://github.com/hallanangelo) | [<img src="https://avatars.githubusercontent.com/u/54161035?v=4" width=115><br><sub>Hítalo Nascimento</sub>](https://github.com/HitaloNasc) | [<img src="https://avatars.githubusercontent.com/u/100882928?v=4" width=115><br><sub>Ingrid Freire</sub>](https://github.com/ingridfsl) | [<img src="https://avatars.githubusercontent.com/u/104030171?v=4" width=115><br><sub>Katharian Abrahel</sub>](https://github.com/katharianabrahel) | [<img src="https://avatars.githubusercontent.com/u/108599710?v=4" width=115><br><sub>Otávio Augusto</sub>](https://github.com/Otavio574) |
 | :--------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
