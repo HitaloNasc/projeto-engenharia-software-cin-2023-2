@@ -42,7 +42,7 @@ No âmbito do projeto, a gestão de equipes e a colaboração desempenharam pap�
 
 | ![Reunião 23/01](./images/reuniao-23-01.jpg) | ![Reunião 30/01](./images/reuniao-30-01.jpg) | ![Reunião 29/02](./images/reuniao-29-02.jpg) | ![Reunião 06/03](./images/reuniao-06-03.jpg) |
 |----------------------------------------------|----------------------------------------------|----------------------------------------------|----------------------------------------------|
-| *Reunião do dia 23 de janeiro - Debate sobre design e arquitetura do projeto*               | *Reunião do dia 30 de janeiro - Criação de histórias de usuários iniciais*               | *Reunião do dia 29 de fevereiro - Definição de outros aspectos do projeto (escopo, restrições, custos, prazos)*             | *Reunião do dia 06 de março - Revisão das funcionalidades e interfaces necessárias*                 |
+| *Reunião do dia 23 de janeiro - Debate sobre design e arquitetura do projeto*               | *Reunião do dia 30 de janeiro - Criação de histórias de usuários iniciais*               | *Reunião do dia 29 de fevereiro - Mudança de escopo (PDV -> DataHunt) e definição de outros aspectos do projeto (escopo, restrições, custos, prazos)*             | *Reunião do dia 06 de março - Revisão das funcionalidades e interfaces necessárias*                 |
 
 ## Considerações Finais
 
