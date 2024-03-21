@@ -50,7 +50,7 @@ async def create_transcription():
             transcription_repository)
         transcription_id = await create_transcription_usecase.execute(transcription_data)
 
-        return {"transcription_id": transcription_id}, 201
+        return {"transcription_id": transcription_id}, 200
 
     return {"message": "Failed to extract transcription"}, 500
 

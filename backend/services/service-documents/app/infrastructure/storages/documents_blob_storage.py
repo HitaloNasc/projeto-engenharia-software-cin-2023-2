@@ -9,8 +9,8 @@ class DocumentsBlobStorage(BlobStorage):
 
     container_client = blob_client.get_container_client("documents")
 
-    async def insert(self, file, file_prefix):
-        ext = Path(file.filename).suffix
+    async def insert(self, file, filename, file_prefix):
+        ext = Path(filename).suffix
         file_name = f"{file_prefix}{ext}"
 
         file_content = file.read()

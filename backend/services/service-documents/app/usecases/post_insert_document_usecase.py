@@ -28,17 +28,17 @@ class PostInsertDocumentUseCase(Usecase):
             "status": status
         }
 
-    async def execute(self, file) -> Dict[str, Any]:
+    async def execute(self, file, filename) -> Dict[str, Any]:
 
         _id = uuid.uuid4().hex
 
-        if not self.__check_file_ext(file.filename):
+        if not self.__check_file_ext(filename):
             raise PRECONDITION_FAILED("Invalid file type")
 
-        file_url = await self.storage.insert(file, _id)
+        file_url = await self.storage.insert(file, filename, _id)
 
-        metadata = self.__format(_id, file.filename, Path(
-            file.filename).suffix, file_url, file.content_length, str(datetime.datetime.now()), 1)
+        metadata = self.__format(_id, filename, Path(
+            filename).suffix, file_url, 0, str(datetime.datetime.now()), 1)
 
         saved = await self.repository.insert(metadata)
 
