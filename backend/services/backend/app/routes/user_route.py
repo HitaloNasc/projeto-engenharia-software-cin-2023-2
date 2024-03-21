@@ -48,15 +48,6 @@ async def login():
     return await login_controller.execute(email, password)
 
 
-@user_route.route("/protect", methods=["GET"])
-@jwt_required
-async def protect():
-
-    token = get_jwt_identity()
-
-    return {"token": token}, 200
-
-
 @user_route.route("/logout", methods=["POST"])
 @jwt_required
 async def logout():

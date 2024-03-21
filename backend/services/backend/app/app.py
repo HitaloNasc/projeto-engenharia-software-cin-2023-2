@@ -7,6 +7,7 @@ from app.helpers.error import INTERNAL_SERVER_ERROR, NOT_FOUND
 from app.helpers.error import ApplicationException
 from app.env import JWT_SECRET_KEY
 from app.routes.user_route import user_route
+from app.routes.analitcs_route import analitcs_route
 
 app = Quart(__name__)
 app.config.from_object(__name__)
@@ -21,6 +22,7 @@ def health():
 
 
 app.register_blueprint(user_route)
+app.register_blueprint(analitcs_route)
 app.register_blueprint(swagger_ui)
 
 
